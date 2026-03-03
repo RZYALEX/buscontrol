@@ -7,9 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="BusControl">
 <title>BusControl Pro</title>
-<link rel="manifest" id="mf">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&family=Nunito:wght@400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -65,7 +63,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--txt);display:flex;fl
 .scroll-content{flex:1;overflow-y:auto;padding:16px 14px 90px;}
 
 /* KPI */
-.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .kc{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:13px;position:relative;overflow:hidden;}
 .kc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .kc.g::after{background:var(--grn);}
@@ -73,115 +71,142 @@ body{font-family:var(--fb);background:var(--bg);color:var(--txt);display:flex;fl
 .kc.b::after{background:var(--blu);}
 .kc.y::after{background:var(--acc);}
 .kc.p::after{background:#a78bfa;}
+.kc.o::after{background:#fb923c;}
 .kl{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);margin-bottom:5px;font-weight:700;}
-.kv{font-family:var(--fm);font-size:21px;line-height:1;}
+.kv{font-family:var(--fm);font-size:20px;line-height:1;}
 .kc.g .kv{color:var(--grn);}
 .kc.r .kv{color:var(--red);}
 .kc.b .kv{color:var(--blu);}
 .kc.y .kv{color:var(--acc);}
 .kc.p .kv{color:#a78bfa;}
+.kc.o .kv{color:#fb923c;}
 .ks{font-size:9px;color:var(--mut);margin-top:3px;}
 .c-pos{color:var(--grn)!important;}
 .c-neg{color:var(--red)!important;}
 
 /* SECTION */
-.sh{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.st{font-family:var(--ff);font-size:14px;font-weight:700;letter-spacing:.5px;white-space:nowrap;}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:10px;margin-top:6px;}
+.st{font-family:var(--ff);font-size:13px;font-weight:700;letter-spacing:.5px;white-space:nowrap;}
 .sl{flex:1;height:1px;background:var(--brd);}
 
-/* BARS */
-.bar-wrap{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:14px;margin-bottom:18px;}
-.br{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.br:last-child{margin-bottom:0;}
-.bl{width:95px;font-size:9px;color:var(--mut);text-align:right;flex-shrink:0;}
-.bt{flex:1;height:17px;background:var(--bg);border-radius:3px;overflow:hidden;}
-.bf{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:6px;font-family:var(--fm);font-size:9px;color:rgba(0,0,0,.8);min-width:30px;}
+/* VUELTA CARD */
+.vuelta-card{background:var(--s1);border:1px solid var(--brd);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.vuelta-header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;background:var(--s2);}
+.vuelta-header:active{background:var(--s3);}
+.vuelta-num{font-family:var(--ff);font-size:14px;font-weight:800;color:var(--acc);}
+.vuelta-route{font-size:11px;color:var(--mut);margin-top:2px;}
+.vuelta-summary{display:flex;gap:8px;align-items:center;}
+.vtag{font-family:var(--fm);font-size:10px;padding:3px 7px;border-radius:5px;font-weight:600;}
+.vtag-g{background:rgba(34,197,94,.15);color:var(--grn);}
+.vtag-r{background:rgba(239,68,68,.15);color:var(--red);}
+.vtag-y{background:rgba(240,180,41,.15);color:var(--acc);}
+.vuelta-body{padding:14px;display:none;}
+.vuelta-body.open{display:block;}
+.vuelta-del{background:none;border:none;color:var(--red);font-size:13px;cursor:pointer;padding:4px 8px;}
 
 /* FORM */
-.fs{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:15px;margin-bottom:11px;}
-.fst{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:7px;}
+.fs{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:14px;margin-bottom:10px;}
+.fst{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:7px;}
 .fdot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.field{margin-bottom:10px;}
+.field{margin-bottom:9px;}
 .field:last-child{margin-bottom:0;}
 .field label{display:block;font-size:10px;color:var(--mut);font-weight:700;margin-bottom:4px;}
 .field input,.field select{width:100%;background:var(--bg);border:1px solid var(--brd);border-radius:8px;color:var(--txt);font-family:var(--fm);font-size:14px;padding:10px 11px;outline:none;transition:border-color .2s;}
 .field input:focus,.field select:focus{border-color:var(--acc);}
 .field select option{background:#111;}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
-.btn-save{width:100%;background:var(--acc);color:#000;font-family:var(--ff);font-size:17px;font-weight:800;letter-spacing:2px;border:none;border-radius:11px;padding:15px;cursor:pointer;margin-top:6px;}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.btn-save{width:100%;background:var(--acc);color:#000;font-family:var(--ff);font-size:16px;font-weight:800;letter-spacing:2px;border:none;border-radius:11px;padding:15px;cursor:pointer;margin-top:6px;}
 .btn-save:active{opacity:.85;}
+.btn-add-vuelta{width:100%;background:none;border:2px dashed var(--acc);color:var(--acc);font-family:var(--ff);font-size:13px;font-weight:700;letter-spacing:1px;border-radius:11px;padding:13px;cursor:pointer;margin-bottom:11px;}
+.btn-add-vuelta:active{background:rgba(240,180,41,.1);}
 
-/* ROUTE ROWS */
-.route-row{background:var(--s2);border:1px solid var(--brd);border-radius:10px;padding:12px;margin-bottom:8px;position:relative;}
-.route-row-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+/* COLABORADORES */
+.colab-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.colab-row input{flex:1;background:var(--bg);border:1px solid var(--brd);border-radius:7px;color:var(--txt);font-family:var(--fm);font-size:13px;padding:8px 10px;outline:none;}
+.colab-row input:focus{border-color:var(--acc);}
+.colab-row .amt-in{width:80px;flex-shrink:0;}
+.colab-del{background:none;border:none;color:var(--red);font-size:16px;cursor:pointer;padding:2px 5px;}
+.btn-add-colab{background:none;border:1px dashed var(--brd);color:var(--mut);font-family:var(--fb);font-size:11px;font-weight:600;border-radius:7px;padding:7px 12px;cursor:pointer;width:100%;margin-top:4px;}
+.btn-add-colab:active{border-color:var(--acc);color:var(--acc);}
+
+/* FRECUENCIA */
+.frec-item{background:var(--bg);border:1px solid var(--brd);border-radius:9px;padding:10px 12px;margin-bottom:7px;}
+.frec-item label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;display:block;margin-bottom:5px;}
+
+/* ROUTE SELECT */
+.route-row{background:var(--s2);border:1px solid var(--brd);border-radius:10px;padding:11px;margin-bottom:8px;}
 .route-tag{background:rgba(240,180,41,.15);color:var(--acc);font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;font-family:var(--fm);}
-.route-km-tag{background:rgba(167,139,250,.15);color:#a78bfa;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;font-family:var(--fm);}
-.route-del{background:none;border:none;color:var(--red);font-size:14px;cursor:pointer;padding:2px 6px;}
-.btn-add-route{width:100%;background:none;border:2px dashed var(--brd);color:var(--mut);font-family:var(--fb);font-size:13px;font-weight:600;border-radius:10px;padding:12px;cursor:pointer;margin-bottom:11px;transition:all .2s;}
-.btn-add-route:active{border-color:var(--acc);color:var(--acc);}
-
-/* PHOTOS */
-.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.photo-area{border:2px dashed var(--brd);border-radius:9px;min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;position:relative;}
-.photo-area img{width:100%;max-height:160px;object-fit:cover;border-radius:7px;}
-.ph-ph{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px;color:var(--mut);font-size:10px;pointer-events:none;}
-.ph-ph .ico{font-size:22px;}
-.photo-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.photo-rm{background:none;border:none;color:var(--red);font-size:10px;cursor:pointer;margin-top:4px;display:block;}
 
 /* TABLE */
 .tw{background:var(--s1);border:1px solid var(--brd);border-radius:13px;overflow:hidden;margin-bottom:12px;}
-.th{padding:12px 14px;border-bottom:1px solid var(--brd);}
+.th{padding:11px 14px;border-bottom:1px solid var(--brd);}
 .th h3{font-size:12px;font-weight:700;}
 table{width:100%;border-collapse:collapse;font-size:11px;}
-thead th{background:var(--s2);padding:8px 10px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;}
+thead th{background:var(--s2);padding:7px 9px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);font-weight:700;}
 tbody tr{border-bottom:1px solid var(--brd);}
 tbody tr:last-child{border-bottom:none;}
-tbody td{padding:10px 10px;font-family:var(--fm);font-size:11px;}
+tbody td{padding:9px 9px;font-family:var(--fm);font-size:11px;}
 .pos{color:var(--grn);}
 .neg{color:var(--red);}
 
-/* MONTH */
-.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:9px;margin-bottom:16px;}
-.dc{background:var(--s1);border:1px solid var(--brd);border-radius:11px;padding:12px;}
+/* MONTH GRID */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:9px;margin-bottom:14px;}
+.dc{background:var(--s1);border:1px solid var(--brd);border-radius:11px;padding:11px;cursor:pointer;}
 .dc:active{border-color:var(--acc);}
-.dn{font-family:var(--ff);font-size:26px;font-weight:800;color:var(--mut);line-height:1;}
-.dnet{font-family:var(--fm);font-size:13px;margin-top:3px;}
+.dn{font-family:var(--ff);font-size:24px;font-weight:800;color:var(--mut);line-height:1;}
+.dnet{font-family:var(--fm);font-size:12px;margin-top:3px;}
 .df{font-size:9px;color:var(--mut);margin-top:2px;}
 
 /* SETTINGS */
-.sc{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:16px;margin-bottom:11px;}
-.sc h3{font-size:10px;font-weight:700;margin-bottom:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);}
-.btn-ss{background:var(--s2);border:1px solid var(--brd);color:var(--txt);font-family:var(--fb);font-size:13px;font-weight:600;border-radius:9px;padding:11px 14px;cursor:pointer;width:100%;margin-top:7px;text-align:left;display:block;}
-.btn-ss:active{opacity:.8;}
+.sc{background:var(--s1);border:1px solid var(--brd);border-radius:13px;padding:14px;margin-bottom:10px;}
+.sc h3{font-size:10px;font-weight:700;margin-bottom:11px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);}
+.btn-ss{background:var(--s2);border:1px solid var(--brd);color:var(--txt);font-family:var(--fb);font-size:13px;font-weight:600;border-radius:9px;padding:11px 14px;cursor:pointer;width:100%;margin-top:6px;text-align:left;display:block;}
 .btn-danger{color:var(--red);}
 
-/* EXPORT BUTTONS */
+/* EXPORT */
 .export-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px;}
-.btn-exp{background:none;border:1px solid var(--acc);color:var(--acc);font-family:var(--ff);font-size:12px;letter-spacing:1px;border-radius:9px;padding:11px 10px;cursor:pointer;width:100%;font-weight:700;text-align:center;}
+.btn-exp{background:none;border:1px solid var(--acc);color:var(--acc);font-family:var(--ff);font-size:11px;letter-spacing:1px;border-radius:9px;padding:11px 8px;cursor:pointer;width:100%;font-weight:700;text-align:center;}
 .btn-exp:active{background:var(--acc);color:#000;}
 .btn-exp.pdf{border-color:var(--red);color:var(--red);}
 .btn-exp.pdf:active{background:var(--red);color:#fff;}
 
 /* MISC */
-.back-btn{background:none;border:1px solid var(--brd);color:var(--mut);padding:7px 12px;border-radius:7px;cursor:pointer;font-size:11px;margin-bottom:14px;font-family:var(--fb);}
-.detail-title{font-family:var(--ff);font-size:17px;font-weight:700;margin-bottom:4px;}
-.detail-sub{font-size:10px;color:var(--mut);margin-bottom:14px;}
+.back-btn{background:none;border:1px solid var(--brd);color:var(--mut);padding:7px 12px;border-radius:7px;cursor:pointer;font-size:11px;margin-bottom:12px;font-family:var(--fb);}
+.detail-title{font-family:var(--ff);font-size:16px;font-weight:700;margin-bottom:3px;}
+.detail-sub{font-size:10px;color:var(--mut);margin-bottom:12px;}
 .empty{text-align:center;padding:36px;color:var(--mut);}
 .empty .ei{font-size:34px;margin-bottom:9px;}
 .empty p{font-size:12px;}
-.chip{display:inline-block;padding:3px 8px;border-radius:4px;font-size:9px;font-weight:700;margin:2px;}
+.chip{display:inline-block;padding:3px 7px;border-radius:4px;font-size:9px;font-weight:700;margin:2px;}
 .chip-g{background:rgba(34,197,94,.15);color:var(--grn);}
 .chip-a{background:rgba(240,180,41,.15);color:var(--acc);}
 .chip-p{background:rgba(167,139,250,.15);color:#a78bfa;}
+.chip-r{background:rgba(239,68,68,.15);color:var(--red);}
+
+/* TOTAL BAR */
+.total-bar{background:linear-gradient(135deg,var(--s2),var(--s3));border:1px solid var(--acc);border-radius:13px;padding:14px;margin-bottom:12px;}
+.total-bar-title{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--acc);font-weight:700;margin-bottom:10px;}
+.total-bar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tb-item{text-align:center;}
+.tb-val{font-family:var(--fm);font-size:16px;font-weight:700;}
+.tb-lbl{font-size:8px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;}
+
+/* PHOTOS */
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.photo-area{border:2px dashed var(--brd);border-radius:9px;min-height:85px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;position:relative;}
+.photo-area img{width:100%;max-height:150px;object-fit:cover;border-radius:7px;}
+.ph-ph{display:flex;flex-direction:column;align-items:center;gap:5px;padding:12px;color:var(--mut);font-size:10px;pointer-events:none;}
+.ph-ph .ico{font-size:20px;}
+.photo-area input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.photo-rm{background:none;border:none;color:var(--red);font-size:10px;cursor:pointer;margin-top:3px;display:block;}
+
 #toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--grn);color:#000;font-family:var(--fm);font-size:12px;font-weight:600;padding:9px 18px;border-radius:8px;opacity:0;transition:all .3s;z-index:999;white-space:nowrap;pointer-events:none;}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 #toast.warn{background:var(--acc);}
 
-/* INSTALL */
-#install-bar{display:none;background:linear-gradient(135deg,#0d2a0d,#1a3a1a);border:1px solid #22c55e44;border-radius:12px;padding:13px 14px;margin-bottom:14px;align-items:center;gap:10px;}
-#install-bar.vis{display:flex;}
+.divider{height:1px;background:var(--brd);margin:10px 0;}
+.badge-vuelta{background:var(--acc);color:#000;font-family:var(--fm);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;}
 </style>
 </head>
 <body>
@@ -232,65 +257,84 @@ tbody td{padding:10px 10px;font-family:var(--fm);font-size:11px;}
     <button class="nb" onclick="ST('settings',this)"><span class="ico">⚙️</span>Ajustes</button>
   </nav>
 </div>
-
 </div>
 <div id="toast"></div>
 
 <script>
-// ── CONSTANTES ────────────────────────────────────────────────────────────────
-const SK='buscontrol_v4', DP='1234';
+const SK='buscontrol_v5', DP='1234';
 
-// Rutas con km aproximados (ida)
-const ROUTE_DATA = [
-  {name:'Machala → Huaquillas',        km:75},
-  {name:'Huaquillas → Machala',        km:75},
-  {name:'Machala → Sta.Rosa → Huaquillas', km:90},
-  {name:'Huaquillas → Sta.Rosa → Machala', km:90},
-  {name:'Machala → Guayaquil',         km:200},
-  {name:'Guayaquil → Machala',         km:200},
-  {name:'Machala → Santo Domingo',     km:380},
-  {name:'Santo Domingo → Machala',     km:380},
-  {name:'Guayaquil → Piura',           km:430},
-  {name:'Piura → Guayaquil',           km:430},
-  {name:'Huaquillas → Guayaquil',      km:270},
-  {name:'Guayaquil → Huaquillas',      km:270},
-  {name:'Guayaquil → Tumbes',          km:310},
-  {name:'Tumbes → Guayaquil',          km:310},
-  {name:'Huaquillas → Montañita',      km:320},
-  {name:'Montañita → Huaquillas',      km:320},
-  {name:'Machala → Alamor',            km:150},
-  {name:'Alamor → Machala',            km:150},
-  {name:'Otra (personalizada)',        km:0},
+const ROUTE_DATA=[
+  {name:'Machala → Huaquillas',km:75},{name:'Huaquillas → Machala',km:75},
+  {name:'Machala → Sta.Rosa → Huaquillas',km:90},{name:'Huaquillas → Sta.Rosa → Machala',km:90},
+  {name:'Machala → Guayaquil',km:200},{name:'Guayaquil → Machala',km:200},
+  {name:'Machala → Santo Domingo',km:380},{name:'Santo Domingo → Machala',km:380},
+  {name:'Guayaquil → Piura',km:430},{name:'Piura → Guayaquil',km:430},
+  {name:'Huaquillas → Guayaquil',km:270},{name:'Guayaquil → Huaquillas',km:270},
+  {name:'Guayaquil → Tumbes',km:310},{name:'Tumbes → Guayaquil',km:310},
+  {name:'Huaquillas → Montañita',km:320},{name:'Montañita → Huaquillas',km:320},
+  {name:'Machala → Alamor',km:150},{name:'Alamor → Machala',km:150},
+  {name:'Otra (personalizada)',km:0},
 ];
-const ROUTE_NAMES = ROUTE_DATA.map(r=>r.name);
-const ROUTE_KM    = Object.fromEntries(ROUTE_DATA.map(r=>[r.name,r.km]));
+const ROUTE_KM=Object.fromEntries(ROUTE_DATA.map(r=>[r.name,r.km]));
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
 let DB={};
 try{DB=JSON.parse(localStorage.getItem(SK)||'{}')}catch{}
-let pinBuf='', curTab='daily', histDet=null, tmpPhotos={}, dfi=null;
-let routeRows=[]; // rutas del formulario actual
+let pinBuf='', curTab='daily', histDet=null, tmpPhotos={};
+let vueltas=[]; // array de vueltas del día
+let openVuelta=0; // índice abierto
 
-const ld  = ()=>new Date().toISOString().split('T')[0];
-const fm  = n=>'$'+(+n||0).toFixed(2);
-const fd  = s=>new Date(s+'T12:00:00').toLocaleDateString('es-EC',{day:'2-digit',month:'short',year:'numeric'});
-const nv  = v=>parseFloat(v)||0;
-const sv  = ()=>localStorage.setItem(SK,JSON.stringify(DB));
-const esc = v=>`"${String(v||'').replace(/"/g,'""')}"`;
+const ld=()=>new Date().toISOString().split('T')[0];
+const fm=n=>'$'+(+n||0).toFixed(2);
+const fd=s=>new Date(s+'T12:00:00').toLocaleDateString('es-EC',{day:'2-digit',month:'short',year:'numeric'});
+const nv=v=>parseFloat(v)||0;
+const sv=()=>localStorage.setItem(SK,JSON.stringify(DB));
 
-// ── PWA ───────────────────────────────────────────────────────────────────────
-const mf=document.getElementById('mf');
-const mb=new Blob([JSON.stringify({name:'BusControl Pro',short_name:'BusControl',start_url:'.',display:'standalone',background_color:'#0a0c10',theme_color:'#0a0c10',orientation:'portrait',icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0c10'/%3E%3Ctext y='.9em' font-size='80'%3E%F0%9F%9A%8C%3C/text%3E%3C/svg%3E",sizes:'any',type:'image/svg+xml'}]})],{type:'application/json'});
-mf.href=URL.createObjectURL(mb);
-
-if('serviceWorker' in navigator){
-  const swc=`self.addEventListener('install',e=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.open('bc2').then(c=>c.match(e.request).then(m=>{const f=fetch(e.request).then(r=>{c.put(e.request,r.clone());return r;}).catch(()=>m);return m||f;})));});`;
-  navigator.serviceWorker.register(URL.createObjectURL(new Blob([swc],{type:'application/javascript'}))).catch(()=>{});
+// ── VUELTA DEFAULTS ────────────────────────────────────────────────────────────
+function newVuelta(n){
+  return {
+    num:n,
+    route:'Machala → Huaquillas',
+    routeCustom:'',
+    km:75,
+    income:0,
+    gastos:{
+      diesel:0, chofer:0, ayudante:0, peajes:0,
+      comida:0, dormitorio:0, garage:0, limpieza:0,
+      recargas:0, tarjeta:0
+    },
+    colaboradores:[],
+    aportesDiario:0,
+    frecuencia:{
+      iess:0, dolarito:0, cuentas:0, repartible:0
+    },
+    notas:''
+  };
 }
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dfi=e;const b=document.getElementById('install-bar');if(b)b.classList.add('vis');});
-function installApp(){if(dfi){dfi.prompt();dfi=null;const b=document.getElementById('install-bar');if(b)b.classList.remove('vis');}}
 
-// ── PIN / LOGIN ───────────────────────────────────────────────────────────────
+function calcVuelta(v){
+  const gFijos=Object.values(v.gastos||{}).reduce((s,x)=>s+nv(x),0);
+  const gColab=(v.colaboradores||[]).reduce((s,c)=>s+nv(c.monto),0);
+  const gFrec=Object.values(v.frecuencia||{}).reduce((s,x)=>s+nv(x),0);
+  const totalGasto=gFijos+gColab+nv(v.aportesDiario)+gFrec;
+  const totalFrecuencia=gFrec;
+  const net=nv(v.income)-totalGasto;
+  return {gFijos,gColab,gFrec,totalGasto,net,totalFrecuencia};
+}
+
+function calcDay(vueltas){
+  const tots={income:0,gasto:0,net:0,frecuencia:0,km:0};
+  (vueltas||[]).forEach(v=>{
+    const c=calcVuelta(v);
+    tots.income+=nv(v.income);
+    tots.gasto+=c.totalGasto;
+    tots.net+=c.net;
+    tots.frecuencia+=c.gFrec;
+    tots.km+=0;
+  });
+  return tots;
+}
+
+// ── PIN / LOGIN ────────────────────────────────────────────────────────────────
 function udots(){for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);if(d)d.className='pin-dot'+(pinBuf.length>i?' on':'');}}
 function PP(k){if(pinBuf.length>=4)return;pinBuf+=k;udots();if(pinBuf.length===4)chkPin();}
 function PD(){pinBuf=pinBuf.slice(0,-1);udots();}
@@ -302,7 +346,7 @@ function chkPin(){
     document.getElementById('screen-app').classList.add('active');
     document.getElementById('h-bus-num').textContent='BUS #'+bus;
     RT(curTab);
-  } else {
+  }else{
     for(let i=0;i<4;i++){const d=document.getElementById('pd'+i);if(d)d.className='pin-dot err';}
     document.getElementById('pin-err').textContent='PIN incorrecto ✕';
     setTimeout(()=>{pinBuf='';udots();document.getElementById('pin-err').textContent='';},900);
@@ -310,7 +354,7 @@ function chkPin(){
 }
 function logout(){document.getElementById('screen-app').classList.remove('active');document.getElementById('screen-login').classList.add('active');}
 
-// ── TABS ──────────────────────────────────────────────────────────────────────
+// ── TABS ───────────────────────────────────────────────────────────────────────
 function ST(tab,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
   document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
@@ -319,218 +363,360 @@ function ST(tab,btn){
 }
 function RT(t){if(t==='daily')RD();else if(t==='register')RR();else if(t==='history')RH();else if(t==='monthly')RM();else if(t==='settings')RS();}
 
-// ── ROUTE SELECT HTML ─────────────────────────────────────────────────────────
-function routeSelectHTML(id, selected=''){
-  return `<select id="${id}" onchange="onRouteChange('${id}')">`+
-    ROUTE_DATA.map(r=>`<option value="${r.name}" data-km="${r.km}" ${r.name===selected?'selected':''}>${r.name} ${r.km?'('+r.km+' km)':''}</option>`).join('')+
-    `</select>`;
-}
-function onRouteChange(selId){
-  const sel=document.getElementById(selId);
-  const idx=selId.split('-')[2]; // route-sel-0
-  const km=ROUTE_KM[sel.value]||0;
-  const kmInput=document.getElementById('route-km-'+idx);
-  if(kmInput && km>0) kmInput.value=km;
-  const cwrap=document.getElementById('route-custom-'+idx);
-  if(cwrap) cwrap.style.display=sel.value==='Otra (personalizada)'?'block':'none';
-}
-
-// ── DAILY ─────────────────────────────────────────────────────────────────────
+// ── DAILY ──────────────────────────────────────────────────────────────────────
 function RD(){
   const el=document.getElementById('tab-daily');
   const t=ld(), r=(DB.records||[]).find(x=>x.date===t);
-  const income=r?.income||0, expense=r?.totalExpense||0, saving=r?.saving||0, net=r?.net||0;
-  const totalKm=(r?.routes||[]).reduce((s,x)=>s+(nv(x.km)*nv(x.freq)),0);
-  const totalFreq=(r?.routes||[]).reduce((s,x)=>s+nv(x.freq),0);
+  const tots=r?calcDay(r.vueltas):{income:0,gasto:0,net:0,frecuencia:0,km:0};
   const dl=new Date().toLocaleDateString('es-EC',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
+  const nv_count=r?.vueltas?.length||0;
 
-  // Barras de gasto
-  let bars='';
-  if(r){
-    const items=[
-      {l:'Ingresos',v:r.income,c:'#22c55e'},{l:'Diésel',v:r.diesel,c:'#f0b429'},
-      {l:'Conductor',v:r.conductor,c:'#a78bfa'},{l:'Ayudante',v:r.ayudante,c:'#c084fc'},
-      {l:'Peajes',v:r.peaje,c:'#fb923c'},{l:'Cuota empresa',v:r.cuota,c:'#ef4444'},
-      {l:'Gastos varios',v:r.varios,c:'#22d3ee'},{l:'Ahorro',v:r.saving,c:'#3b82f6'},
-    ].filter(i=>i.v>0);
-    const mx=Math.max(...items.map(i=>i.v),1);
-    bars=`<div class="sh"><div class="st">Desglose de gastos</div><div class="sl"></div></div>
-    <div class="bar-wrap">${items.map(i=>`<div class="br"><div class="bl">${i.l}</div><div class="bt"><div class="bf" style="width:${Math.round(i.v/mx*100)}%;background:${i.c}">${fm(i.v)}</div></div></div>`).join('')}</div>`;
-  }
-
-  // Rutas del día
-  let rutasHtml='';
-  if(r?.routes?.length){
-    rutasHtml=`<div class="sh"><div class="st">Rutas del día</div><div class="sl"></div></div>
-    <div style="margin-bottom:18px">${r.routes.map(x=>`
-      <div class="route-row" style="cursor:default">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-          <div style="font-size:12px;font-weight:700;color:var(--txt);flex:1">${x.name}</div>
+  let vueltasHtml='';
+  if(r?.vueltas?.length){
+    vueltasHtml=`<div class="sh"><div class="st">Vueltas del día</div><div class="sl"></div></div>`;
+    r.vueltas.forEach((v,i)=>{
+      const c=calcVuelta(v);
+      vueltasHtml+=`<div class="vuelta-card">
+        <div class="vuelta-header" onclick="toggleVueltaView(${i})">
+          <div>
+            <div class="vuelta-num">Vuelta ${v.num} <span class="badge-vuelta">${v.route==='Otra (personalizada)'?v.routeCustom||'Personalizada':v.route.split('→')[0].trim()+'→'+v.route.split('→').slice(-1)[0].trim()}</span></div>
+            <div class="vuelta-route">${nv(v.km)} km</div>
+          </div>
+          <div class="vuelta-summary">
+            <span class="vtag vtag-g">${fm(nv(v.income))}</span>
+            <span class="vtag vtag-r">-${fm(c.totalGasto)}</span>
+            <span class="vtag ${c.net>=0?'vtag-g':'vtag-r'}">${fm(c.net)}</span>
+          </div>
         </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <span class="chip chip-g">🔁 ${x.freq} frecuencia${x.freq!=1?'s':''}</span>
-          <span class="chip chip-p">📍 ${x.km} km c/u</span>
-          <span class="chip chip-a">🛣️ ${(nv(x.km)*nv(x.freq)).toFixed(0)} km total</span>
+        <div class="vuelta-body" id="vv-body-${i}">
+          <div class="r3" style="margin-bottom:8px">
+            ${[['Ingreso',nv(v.income),'g'],['Gastos',c.totalGasto,'r'],['Neto',c.net,c.net>=0?'g':'r']].map(([l,x,cl])=>`<div style="text-align:center;background:var(--bg);border-radius:8px;padding:8px;"><div style="font-size:8px;color:var(--mut);text-transform:uppercase;letter-spacing:1px">${l}</div><div style="font-family:var(--fm);font-size:13px;color:var(--${cl==='g'?'grn':'red'})">${fm(x)}</div></div>`).join('')}
+          </div>
+          <div style="font-size:10px;color:var(--mut)">
+            ${Object.entries(v.gastos||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd)"><span>${gastoLabel(k)}</span><span style="font-family:var(--fm);color:var(--red)">${fm(x)}</span></div>`).join('')}
+            ${(v.colaboradores||[]).filter(c=>nv(c.monto)>0).map(c=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd)"><span>👥 ${c.nombre||'Colaborador'}</span><span style="font-family:var(--fm);color:var(--red)">${fm(c.monto)}</span></div>`).join('')}
+            ${nv(v.aportesDiario)>0?`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd)"><span>🏢 Aporte Diario</span><span style="font-family:var(--fm);color:var(--red)">${fm(v.aportesDiario)}</span></div>`:''}
+            ${Object.entries(v.frecuencia||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd)"><span>💰 ${frecLabel(k)}</span><span style="font-family:var(--fm);color:var(--blu)">${fm(x)}</span></div>`).join('')}
+          </div>
         </div>
-      </div>`).join('')}
-    </div>`;
-  }
-
-  // Fotos
-  let photos='';
-  if(r?.photoRecibo||r?.photoAporte){
-    photos=`<div class="sh"><div class="st">Comprobantes</div><div class="sl"></div></div>
-    <div class="photo-grid" style="margin-bottom:16px">
-      ${r.photoRecibo?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px;text-transform:uppercase">Recibo salida</div><img src="${r.photoRecibo}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}
-      ${r.photoAporte?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px;text-transform:uppercase">Aporte empresa</div><img src="${r.photoAporte}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}
-    </div>`;
+      </div>`;
+    });
   }
 
   el.innerHTML=`
-    <div id="install-bar">
-      <div style="font-size:22px">📲</div>
-      <div style="flex:1"><strong style="color:var(--grn);font-size:12px;display:block">Instalar como App</strong><span style="font-size:10px;color:#a0c0a0">Funciona sin internet</span></div>
-      <button onclick="installApp()" style="background:var(--grn);color:#000;border:none;border-radius:8px;padding:8px 12px;font-family:var(--ff);font-size:12px;font-weight:700;cursor:pointer">INSTALAR</button>
+    <div style="font-family:var(--ff);font-size:11px;color:var(--mut);letter-spacing:1px;margin-bottom:12px">${dl}</div>
+    <div class="total-bar">
+      <div class="total-bar-title">📊 RESUMEN DEL DÍA · ${nv_count} VUELTA${nv_count!==1?'S':''}</div>
+      <div class="total-bar-grid">
+        <div class="tb-item"><div class="tb-val" style="color:var(--grn)">${fm(tots.income)}</div><div class="tb-lbl">Ingresos</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:var(--red)">${fm(tots.gasto)}</div><div class="tb-lbl">Gastos</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:${tots.net>=0?'var(--acc)':'var(--red)'}">${fm(tots.net)}</div><div class="tb-lbl">Neto</div></div>
+      </div>
+      <div class="total-bar-grid" style="margin-top:10px">
+        <div class="tb-item"><div class="tb-val" style="color:var(--blu)">${fm(tots.frecuencia)}</div><div class="tb-lbl">Frecuencia</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:#a78bfa">${tots.km.toFixed(0)}</div><div class="tb-lbl">Km total</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:var(--mut)">${nv_count}</div><div class="tb-lbl">Vueltas</div></div>
+      </div>
     </div>
-    <div style="font-family:var(--ff);font-size:11px;color:var(--mut);letter-spacing:1px;margin-bottom:14px">${dl}</div>
-    <div class="kgrid" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="kc g"><div class="kl">Ingresos</div><div class="kv">${fm(income)}</div><div class="ks">${totalFreq} frecuencias</div></div>
-      <div class="kc r"><div class="kl">Gastos</div><div class="kv">${fm(expense)}</div><div class="ks">Total egresos</div></div>
-      <div class="kc b"><div class="kl">Ahorro</div><div class="kv">${fm(saving)}</div></div>
-    </div>
-    <div class="kgrid">
-      <div class="kc y"><div class="kl">Ganancia neta</div><div class="kv ${net>=0?'c-pos':'c-neg'}">${fm(net)}</div><div class="ks">Ingreso − Gasto</div></div>
-      <div class="kc p"><div class="kl">Km recorridos</div><div class="kv">${totalKm.toFixed(0)}</div><div class="ks">km total hoy</div></div>
-    </div>
-    ${rutasHtml}
-    ${bars}
-    ${photos}
+    ${vueltasHtml}
     ${!r?'<div class="empty"><div class="ei">📭</div><p>Sin registro hoy — ve a Registrar</p></div>':''}
     <div class="export-row" style="margin-top:8px">
       <button class="btn-exp" onclick="EX_CSV()">📊 CSV / Excel</button>
       <button class="btn-exp pdf" onclick="PDF_day('${t}')">📄 PDF del día</button>
     </div>`;
-  if(dfi)document.getElementById('install-bar').style.display='flex';
 }
 
-// ── REGISTER ──────────────────────────────────────────────────────────────────
+function toggleVueltaView(i){
+  const b=document.getElementById('vv-body-'+i);
+  if(b) b.classList.toggle('open');
+}
+
+function gastoLabel(k){
+  const m={diesel:'🛢️ Diésel',chofer:'👤 Chofer',ayudante:'👥 Ayudante',peajes:'🛣️ Peajes',comida:'🍽️ Comida',dormitorio:'🛏️ Dormitorio',garage:'🔧 Garage',limpieza:'🧹 Limpieza',recargas:'📟 Recargas Terminal',tarjeta:'📱 Tarjeta/Minutos'};
+  return m[k]||k;
+}
+function frecLabel(k){
+  const m={iess:'Ahorro Socios IESS',dolarito:'Dolarito/Defensa Frecuencia',cuentas:'Ahorro Cobro Cuentas',repartible:'Socios B2-B4 / Repartibles'};
+  return m[k]||k;
+}
+
+// ── REGISTER ───────────────────────────────────────────────────────────────────
 function RR(){
   const el=document.getElementById('tab-register');
   const t=ld(), ex=(DB.records||[]).find(r=>r.date===t)||{};
-  const v=k=>ex[k]||'';
-  routeRows=ex.routes?ex.routes.map(r=>({...r})):[{name:'Machala → Huaquillas',km:75,freq:1,custom:''}];
+  vueltas=ex.vueltas?JSON.parse(JSON.stringify(ex.vueltas)):[newVuelta(1)];
+  openVuelta=vueltas.length-1;
+  tmpPhotos={};
 
   el.innerHTML=`
-    <div class="fs">
-      <div class="fst"><div class="fdot" style="background:var(--acc)"></div>Rutas del día</div>
-      <div id="routes-container"></div>
-      <button class="btn-add-route" onclick="addRouteRow()">+ Agregar otra ruta</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-family:var(--ff);font-size:13px;font-weight:700">Registro por Vueltas</div>
+      <div class="field" style="margin:0"><input type="date" id="f-date" value="${t}" style="background:var(--s2);border:1px solid var(--brd);border-radius:7px;color:var(--txt);font-family:var(--fm);font-size:11px;padding:6px 9px;outline:none;"></div>
     </div>
-    <div class="fs">
-      <div class="fst"><div class="fdot" style="background:var(--grn)"></div>Ingresos</div>
-      <div class="field"><label>Total recaudado del día ($)</label><input type="number" id="f-income" value="${v('income')}" placeholder="0.00" inputmode="decimal"></div>
-      <div class="field"><label>Notas (opcional)</label><input type="text" id="f-inote" value="${v('incomeNote')}" placeholder="Observación..."></div>
-    </div>
-    <div class="fs">
-      <div class="fst"><div class="fdot" style="background:var(--red)"></div>Gastos fijos</div>
-      <div class="r2">
-        <div class="field"><label>🛢️ Diésel ($)</label><input type="number" id="f-diesel" value="${v('diesel')}" placeholder="0.00" inputmode="decimal"></div>
-        <div class="field"><label>🛣️ Peajes ($)</label><input type="number" id="f-peaje" value="${v('peaje')}" placeholder="0.00" inputmode="decimal"></div>
-        <div class="field"><label>👤 Conductor ($)</label><input type="number" id="f-conductor" value="${v('conductor')}" placeholder="0.00" inputmode="decimal"></div>
-        <div class="field"><label>👥 Ayudante ($)</label><input type="number" id="f-ayudante" value="${v('ayudante')}" placeholder="0.00" inputmode="decimal"></div>
-      </div>
-      <div class="field"><label>🏢 Cuota empresa ($)</label><input type="number" id="f-cuota" value="${v('cuota')}" placeholder="0.00" inputmode="decimal"></div>
-    </div>
-    <div class="fs">
-      <div class="fst"><div class="fdot" style="background:var(--blu)"></div>Gastos varios & Ahorro</div>
-      <div class="r2">
-        <div class="field"><label>🍽️ Gastos varios ($)</label><input type="number" id="f-varios" value="${v('varios')}" placeholder="0.00" inputmode="decimal"></div>
-        <div class="field"><label>💰 Ahorro ($)</label><input type="number" id="f-saving" value="${v('saving')}" placeholder="0.00" inputmode="decimal"></div>
-      </div>
-      <div class="field"><label>Detalle varios</label><input type="text" id="f-vnote" value="${v('variosNote')}" placeholder="Ej: almuerzo, lavado..."></div>
-      <div class="field"><label>📅 Fecha</label><input type="date" id="f-date" value="${t}"></div>
-    </div>
-    <div class="fs">
-      <div class="fst"><div class="fdot" style="background:#fb923c)"></div>Fotos de comprobantes</div>
+    <div id="vueltas-container"></div>
+    <button class="btn-add-vuelta" onclick="addVuelta()">＋ AGREGAR VUELTA</button>
+    <div id="totales-bar"></div>
+    <div class="fs" style="margin-top:4px">
+      <div class="fst"><div class="fdot" style="background:#fb923c"></div>Fotos de comprobantes</div>
       <div class="photo-grid">
         <div>
-          <div style="font-size:10px;color:var(--mut);margin-bottom:5px;font-weight:700">🧾 RECIBO DE SALIDA</div>
+          <div style="font-size:10px;color:var(--mut);margin-bottom:4px;font-weight:700">🧾 RECIBO SALIDA</div>
           <div class="photo-area" id="pa-recibo">
             ${ex.photoRecibo?`<img src="${ex.photoRecibo}">`:'<div class="ph-ph"><div class="ico">📷</div><span>Toca para foto</span></div>'}
             <input type="file" accept="image/*" capture="environment" onchange="HP('recibo',this)">
           </div>
-          <button class="photo-rm" id="rm-recibo" onclick="RP('recibo')" style="${ex.photoRecibo?'':'display:none'}">✕ Quitar foto</button>
+          <button class="photo-rm" id="rm-recibo" onclick="RP('recibo')" style="${ex.photoRecibo?'':'display:none'}">✕ Quitar</button>
         </div>
         <div>
-          <div style="font-size:10px;color:var(--mut);margin-bottom:5px;font-weight:700">💵 APORTE EMPRESA</div>
+          <div style="font-size:10px;color:var(--mut);margin-bottom:4px;font-weight:700">💵 APORTE EMPRESA</div>
           <div class="photo-area" id="pa-aporte">
             ${ex.photoAporte?`<img src="${ex.photoAporte}">`:'<div class="ph-ph"><div class="ico">📷</div><span>Toca para foto</span></div>'}
             <input type="file" accept="image/*" capture="environment" onchange="HP('aporte',this)">
           </div>
-          <button class="photo-rm" id="rm-aporte" onclick="RP('aporte')" style="${ex.photoAporte?'':'display:none'}">✕ Quitar foto</button>
+          <button class="photo-rm" id="rm-aporte" onclick="RP('aporte')" style="${ex.photoAporte?'':'display:none'}">✕ Quitar</button>
         </div>
       </div>
     </div>
-    <button class="btn-save" onclick="SR()">GUARDAR REGISTRO</button>`;
-  tmpPhotos={};
-  renderRouteRows();
+    <button class="btn-save" onclick="SR()">💾 GUARDAR DÍA</button>`;
+
+  renderVueltas();
+  updateTotalesBar();
 }
 
-function renderRouteRows(){
-  const c=document.getElementById('routes-container');
-  if(!c) return;
-  c.innerHTML=routeRows.map((row,i)=>`
-    <div class="route-row" id="rrow-${i}">
-      <div class="route-row-head">
-        <span class="route-tag">Ruta ${i+1}</span>
-        <div style="display:flex;gap:6px;align-items:center">
-          <span class="route-km-tag" id="km-tag-${i}">📍 ${row.km} km</span>
-          ${routeRows.length>1?`<button class="route-del" onclick="delRouteRow(${i})">✕</button>`:''}
+function renderVueltas(){
+  const c=document.getElementById('vueltas-container');
+  if(!c)return;
+  c.innerHTML=vueltas.map((v,i)=>buildVueltaForm(v,i)).join('');
+  vueltas.forEach((_,i)=>{
+    const b=document.getElementById('vbody-'+i);
+    if(b && i===openVuelta) b.classList.add('open');
+  });
+}
+
+function buildVueltaForm(v,i){
+  const c=calcVuelta(v);
+  const colabRows=(v.colaboradores||[]).map((col,ci)=>`
+    <div class="colab-row" id="crow-${i}-${ci}">
+      <input type="text" placeholder="Ej: Boletero, Enganchador..." value="${col.nombre||''}" onchange="updateColab(${i},${ci},'nombre',this.value)">
+      <input class="amt-in" type="number" placeholder="$0" value="${col.monto||''}" inputmode="decimal" onchange="updateColab(${i},${ci},'monto',this.value)">
+      <button class="colab-del" onclick="delColab(${i},${ci})">✕</button>
+    </div>`).join('');
+
+  return `<div class="vuelta-card" id="vcard-${i}">
+    <div class="vuelta-header" onclick="toggleVuelta(${i})">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="vuelta-num">Vuelta ${v.num}</span>
+          <span style="font-size:10px;color:var(--mut)">${v.route==='Otra (personalizada)'?v.routeCustom||'Personalizada':v.route.split('→')[0].trim()}</span>
+        </div>
+        <div style="font-size:9px;color:var(--mut);margin-top:2px">
+          ${fm(nv(v.income))} ingreso · ${fm(c.totalGasto)} gasto · <span style="color:${c.net>=0?'var(--grn)':'var(--red)'}">${fm(c.net)} neto</span>
         </div>
       </div>
+      <div style="display:flex;gap:6px;align-items:center">
+        ${vueltas.length>1?`<button class="vuelta-del" onclick="event.stopPropagation();delVuelta(${i})">🗑️</button>`:''}
+        <span style="color:var(--acc);font-size:16px" id="vtoggle-${i}">▼</span>
+      </div>
+    </div>
+    <div class="vuelta-body" id="vbody-${i}">
+      <!-- RUTA -->
       <div class="field">
-        <label>Ruta</label>
-        ${routeSelectHTML('route-sel-'+i, row.name)}
+        <label>🗺️ Ruta</label>
+        <select onchange="updateVueltaRoute(${i},this.value)">
+          ${ROUTE_DATA.map(r=>`<option value="${r.name}" ${r.name===v.route?'selected':''}>${r.name} ${r.km?'('+r.km+' km)':''}</option>`).join('')}
+        </select>
       </div>
-      <div id="route-custom-${i}" class="field" style="display:${row.name==='Otra (personalizada)'?'block':'none'}">
-        <label>Nombre personalizado</label>
-        <input type="text" id="route-cname-${i}" value="${row.custom||''}" placeholder="Ej: Machala - Zaruma">
+      <div id="custom-route-${i}" style="display:${v.route==='Otra (personalizada)'?'block':'none'}">
+        <div class="field">
+          <label>Nombre personalizado</label>
+          <input type="text" value="${v.routeCustom||''}" placeholder="Ej: Machala - Zaruma" onchange="updateVuelta(${i},'routeCustom',this.value)">
+        </div>
       </div>
+
+
+      <!-- INGRESOS -->
+      <div class="divider"></div>
+      <div class="fst"><div class="fdot" style="background:var(--grn)"></div>INGRESOS DE LA VUELTA</div>
+      <div class="field"><label>💵 Total recaudado ($)</label><input type="number" value="${v.income||''}" placeholder="0.00" inputmode="decimal" onchange="updateVuelta(${i},'income',this.value);updateVueltaSummary(${i});updateTotalesBar()"></div>
+
+      <!-- GASTOS FIJOS -->
+      <div class="divider"></div>
+      <div class="fst"><div class="fdot" style="background:var(--red)"></div>GASTOS DE LA VUELTA</div>
       <div class="r2">
-        <div class="field"><label>Frecuencias (vueltas)</label><input type="number" id="route-freq-${i}" value="${row.freq||1}" min="1" inputmode="numeric" onchange="updateKmTag(${i})"></div>
-        <div class="field"><label>Km por vuelta</label><input type="number" id="route-km-${i}" value="${row.km||0}" inputmode="decimal" onchange="updateKmTag(${i})"></div>
+        <div class="field"><label>🛢️ Diésel</label><input type="number" value="${v.gastos.diesel||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'diesel',this.value)"></div>
+        <div class="field"><label>👤 Chofer</label><input type="number" value="${v.gastos.chofer||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'chofer',this.value)"></div>
+        <div class="field"><label>👥 Ayudante</label><input type="number" value="${v.gastos.ayudante||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'ayudante',this.value)"></div>
+        <div class="field"><label>🛣️ Peajes</label><input type="number" value="${v.gastos.peajes||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'peajes',this.value)"></div>
+        <div class="field"><label>🍽️ Comida</label><input type="number" value="${v.gastos.comida||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'comida',this.value)"></div>
+        <div class="field"><label>🛏️ Dormitorio</label><input type="number" value="${v.gastos.dormitorio||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'dormitorio',this.value)"></div>
+        <div class="field"><label>🔧 Garage</label><input type="number" value="${v.gastos.garage||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'garage',this.value)"></div>
+        <div class="field"><label>🧹 Limpieza</label><input type="number" value="${v.gastos.limpieza||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'limpieza',this.value)"></div>
+        <div class="field"><label>📟 Recargas Terminal</label><input type="number" value="${v.gastos.recargas||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'recargas',this.value)"></div>
+        <div class="field"><label>📱 Tarjeta/Minutos</label><input type="number" value="${v.gastos.tarjeta||''}" placeholder="0.00" inputmode="decimal" onchange="updateGasto(${i},'tarjeta',this.value)"></div>
       </div>
-    </div>`).join('');
+
+      <!-- COLABORADORES -->
+      <div class="divider"></div>
+      <div class="fst"><div class="fdot" style="background:#fb923c"></div>COLABORADORES</div>
+      <div style="font-size:9px;color:var(--mut);margin-bottom:8px">Boleteros, enganchadores, oficinas, etc.</div>
+      <div id="colabs-${i}">${colabRows}</div>
+      <button class="btn-add-colab" onclick="addColab(${i})">＋ Agregar colaborador</button>
+
+      <!-- APORTE DIARIO -->
+      <div class="divider"></div>
+      <div class="fst"><div class="fdot" style="background:#ef4444"></div>APORTE DIARIO</div>
+      <div class="field"><label>🏢 Aporte Diario a la Empresa ($)</label><input type="number" value="${v.aportesDiario||''}" placeholder="0.00" inputmode="decimal" onchange="updateVuelta(${i},'aportesDiario',this.value);updateVueltaSummary(${i});updateTotalesBar()"></div>
+
+      <!-- FRECUENCIA -->
+      <div class="divider"></div>
+      <div class="fst"><div class="fdot" style="background:var(--blu)"></div>FRECUENCIA (AHORROS)</div>
+      <div class="r2">
+        <div class="field"><label>🏥 Ahorro Socios IESS</label><input type="number" value="${v.frecuencia.iess||''}" placeholder="0.00" inputmode="decimal" onchange="updateFrecuencia(${i},'iess',this.value)"></div>
+        <div class="field"><label>⚡ Dolarito / Def. Frecuencia</label><input type="number" value="${v.frecuencia.dolarito||''}" placeholder="0.00" inputmode="decimal" onchange="updateFrecuencia(${i},'dolarito',this.value)"></div>
+        <div class="field"><label>📋 Ahorro Cobro Cuentas</label><input type="number" value="${v.frecuencia.cuentas||''}" placeholder="0.00" inputmode="decimal" onchange="updateFrecuencia(${i},'cuentas',this.value)"></div>
+        <div class="field"><label>💼 Socios B2-B4 / Repartibles</label><input type="number" value="${v.frecuencia.repartible||''}" placeholder="0.00" inputmode="decimal" onchange="updateFrecuencia(${i},'repartible',this.value)"></div>
+      </div>
+
+      <!-- NOTAS -->
+      <div class="divider"></div>
+      <div class="field"><label>📝 Notas de la vuelta</label><input type="text" value="${v.notas||''}" placeholder="Observaciones..." onchange="updateVuelta(${i},'notas',this.value)"></div>
+
+      <div id="vsummary-${i}" style="background:var(--bg);border-radius:9px;padding:10px;margin-top:8px">
+        ${buildVueltaSummary(i)}
+      </div>
+    </div>
+  </div>`;
 }
 
-function updateKmTag(i){
-  const km=nv(document.getElementById('route-km-'+i)?.value);
-  const freq=nv(document.getElementById('route-freq-'+i)?.value)||1;
-  const tag=document.getElementById('km-tag-'+i);
-  if(tag) tag.textContent=`📍 ${km} km × ${freq} = ${(km*freq).toFixed(0)} km`;
+function buildVueltaSummary(i){
+  const v=vueltas[i];
+  const c=calcVuelta(v);
+  return `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center">
+    <div><div style="font-family:var(--fm);font-size:13px;color:var(--grn)">${fm(nv(v.income))}</div><div style="font-size:8px;color:var(--mut)">INGRESO</div></div>
+    <div><div style="font-family:var(--fm);font-size:13px;color:var(--red)">${fm(c.totalGasto)}</div><div style="font-size:8px;color:var(--mut)">GASTO</div></div>
+    <div><div style="font-family:var(--fm);font-size:13px;color:${c.net>=0?'var(--grn)':'var(--red)'}">${fm(c.net)}</div><div style="font-size:8px;color:var(--mut)">NETO</div></div>
+  </div>`;
 }
 
-function addRouteRow(){
-  routeRows.push({name:'Machala → Huaquillas',km:75,freq:1,custom:''});
-  renderRouteRows();
+function updateTotalesBar(){
+  const bar=document.getElementById('totales-bar');
+  if(!bar)return;
+  const tots=calcDay(vueltas);
+  bar.innerHTML=`<div class="total-bar" style="margin-bottom:12px">
+    <div class="total-bar-title">📊 TOTAL DEL DÍA (${vueltas.length} VUELTA${vueltas.length!==1?'S':''})</div>
+    <div class="total-bar-grid">
+      <div class="tb-item"><div class="tb-val" style="color:var(--grn)">${fm(tots.income)}</div><div class="tb-lbl">Ingresos</div></div>
+      <div class="tb-item"><div class="tb-val" style="color:var(--red)">${fm(tots.gasto)}</div><div class="tb-lbl">Gastos</div></div>
+      <div class="tb-item"><div class="tb-val" style="color:${tots.net>=0?'var(--acc)':'var(--red)'}">${fm(tots.net)}</div><div class="tb-lbl">Neto</div></div>
+    </div>
+    <div class="total-bar-grid" style="margin-top:8px">
+      <div class="tb-item"><div class="tb-val" style="color:var(--blu)">${fm(tots.frecuencia)}</div><div class="tb-lbl">Frecuencia</div></div>
+      <div class="tb-item"><div class="tb-val" style="color:#a78bfa">${tots.km.toFixed(0)}</div><div class="tb-lbl">Km total</div></div>
+      <div class="tb-item"><div class="tb-val" style="color:var(--mut)">${vueltas.length}</div><div class="tb-lbl">Vueltas</div></div>
+    </div>
+  </div>`;
 }
 
-function delRouteRow(i){
-  routeRows.splice(i,1);
-  renderRouteRows();
+function updateVueltaSummary(i){
+  const s=document.getElementById('vsummary-'+i);
+  if(s) s.innerHTML=buildVueltaSummary(i);
+  // also update header summary text
+  const card=document.getElementById('vcard-'+i);
+  if(card){
+    const c=calcVuelta(vueltas[i]);
+    const v=vueltas[i];
+    const sub=card.querySelector('.vuelta-header > div > div:last-child');
+    if(sub) sub.innerHTML=`${fm(nv(v.income))} ingreso · ${fm(c.totalGasto)} gasto · <span style="color:${c.net>=0?'var(--grn)':'var(--red)'}">${fm(c.net)} neto</span>`;
+  }
 }
 
-function collectRoutes(){
-  return routeRows.map((_,i)=>{
-    const sel=document.getElementById('route-sel-'+i);
-    const name=sel?.value==='Otra (personalizada)'
-      ?(document.getElementById('route-cname-'+i)?.value||'Personalizada')
-      :(sel?.value||'Sin ruta');
-    const km=nv(document.getElementById('route-km-'+i)?.value);
-    const freq=nv(document.getElementById('route-freq-'+i)?.value)||1;
-    const custom=document.getElementById('route-cname-'+i)?.value||'';
-    return {name,km,freq,custom};
-  });
+function toggleVuelta(i){
+  const b=document.getElementById('vbody-'+i);
+  const t=document.getElementById('vtoggle-'+i);
+  if(!b)return;
+  const isOpen=b.classList.toggle('open');
+  if(t) t.textContent=isOpen?'▲':'▼';
+  if(isOpen) openVuelta=i;
+}
+
+function addVuelta(){
+  const n=vueltas.length+1;
+  vueltas.push(newVuelta(n));
+  openVuelta=vueltas.length-1;
+  renderVueltas();
+  updateTotalesBar();
+  setTimeout(()=>{
+    const last=document.getElementById('vcard-'+(vueltas.length-1));
+    if(last) last.scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
+}
+
+function delVuelta(i){
+  if(vueltas.length<=1){showToast('⚠️ Debe haber al menos una vuelta',true);return;}
+  vueltas.splice(i,1);
+  vueltas.forEach((v,j)=>v.num=j+1);
+  openVuelta=Math.min(openVuelta,vueltas.length-1);
+  renderVueltas();
+  updateTotalesBar();
+}
+
+function updateVuelta(i,k,val){
+  vueltas[i][k]=nv(val)||val;
+  updateVueltaSummary(i);
+  updateTotalesBar();
+}
+
+function updateVueltaRoute(i,val){
+  vueltas[i].route=val;
+  vueltas[i].km=ROUTE_KM[val]||vueltas[i].km;
+  const cr=document.getElementById('custom-route-'+i);
+  if(cr) cr.style.display=val==='Otra (personalizada)'?'block':'none';
+  // update km field
+  const kmInput=document.querySelector(`#vbody-${i} input[onchange*="'km'"]`);
+  if(kmInput && ROUTE_KM[val]) kmInput.value=ROUTE_KM[val];
+  updateTotalesBar();
+}
+
+function updateGasto(i,k,val){
+  vueltas[i].gastos[k]=nv(val);
+  updateVueltaSummary(i);
+  updateTotalesBar();
+}
+
+function updateFrecuencia(i,k,val){
+  vueltas[i].frecuencia[k]=nv(val);
+  updateVueltaSummary(i);
+  updateTotalesBar();
+}
+
+function addColab(i){
+  vueltas[i].colaboradores.push({nombre:'',monto:0});
+  const c=vueltas[i].colaboradores;
+  const ci=c.length-1;
+  const container=document.getElementById('colabs-'+i);
+  if(container){
+    const row=document.createElement('div');
+    row.className='colab-row';
+    row.id=`crow-${i}-${ci}`;
+    row.innerHTML=`<input type="text" placeholder="Ej: Boletero, Enganchador..." onchange="updateColab(${i},${ci},'nombre',this.value)"><input class="amt-in" type="number" placeholder="$0" inputmode="decimal" onchange="updateColab(${i},${ci},'monto',this.value)"><button class="colab-del" onclick="delColab(${i},${ci})">✕</button>`;
+    container.appendChild(row);
+  }
+}
+
+function updateColab(i,ci,k,val){
+  if(!vueltas[i].colaboradores[ci])return;
+  vueltas[i].colaboradores[ci][k]=k==='monto'?nv(val):val;
+  updateVueltaSummary(i);
+  updateTotalesBar();
+}
+
+function delColab(i,ci){
+  vueltas[i].colaboradores.splice(ci,1);
+  const container=document.getElementById('colabs-'+i);
+  const row=document.getElementById(`crow-${i}-${ci}`);
+  if(row) row.remove();
+  updateVueltaSummary(i);
+  updateTotalesBar();
 }
 
 // PHOTOS
@@ -555,67 +741,67 @@ function RP(key){
 function SR(){
   const t=document.getElementById('f-date').value;
   const ex=(DB.records||[]).find(r=>r.date===t)||{};
-  const routes=collectRoutes();
-  const totalFreq=routes.reduce((s,r)=>s+r.freq,0);
-  const totalKm=routes.reduce((s,r)=>s+(r.km*r.freq),0);
-  const diesel=nv(document.getElementById('f-diesel').value);
-  const conductor=nv(document.getElementById('f-conductor').value);
-  const ayudante=nv(document.getElementById('f-ayudante').value);
-  const peaje=nv(document.getElementById('f-peaje').value);
-  const cuota=nv(document.getElementById('f-cuota').value);
-  const varios=nv(document.getElementById('f-varios').value);
-  const totalExpense=diesel+conductor+ayudante+peaje+cuota+varios;
-  const income=nv(document.getElementById('f-income').value);
+  const tots=calcDay(vueltas);
   const rec={
-    date:t, income, routes, totalFreq, totalKm,
-    diesel, conductor, ayudante, peaje, cuota, varios,
-    saving:nv(document.getElementById('f-saving').value),
-    totalExpense, net:income-totalExpense,
-    incomeNote:document.getElementById('f-inote').value,
-    variosNote:document.getElementById('f-vnote').value,
+    date:t,
+    vueltas:JSON.parse(JSON.stringify(vueltas)),
+    income:tots.income,
+    totalExpense:tots.gasto,
+    net:tots.net,
+    totalKm:tots.km,
+    totalFrecuencia:tots.frecuencia,
+    totalVueltas:vueltas.length,
     photoRecibo:tmpPhotos['recibo']!==undefined?tmpPhotos['recibo']:ex.photoRecibo||null,
     photoAporte:tmpPhotos['aporte']!==undefined?tmpPhotos['aporte']:ex.photoAporte||null,
-    busNumber:DB.busNumber||'01', ts:Date.now()
+    busNumber:DB.busNumber||'01',
+    ts:Date.now()
   };
   DB.records=[...(DB.records||[]).filter(r=>r.date!==t),rec].sort((a,b)=>b.date.localeCompare(a.date));
-  sv(); tmpPhotos={}; showToast('✅ Guardado — '+fd(t));
+  sv(); tmpPhotos={};
+  EX_CSV_day(rec);
+  showToast('✅ Guardado y exportado — '+fd(t));
+  RT('daily');
+  document.querySelectorAll('.nb').forEach((b,i)=>{b.classList.toggle('on',i===0);});
+  document.querySelectorAll('.tab-panel').forEach((p,i)=>{p.style.display=i===0?'block':'none';});
 }
 
-// ── HISTORY ───────────────────────────────────────────────────────────────────
+// ── HISTORY ────────────────────────────────────────────────────────────────────
 function RH(){
   const el=document.getElementById('tab-history');
   const records=DB.records||[];
   if(histDet){
     const r=histDet;
-    const totalKm=(r.routes||[]).reduce((s,x)=>s+(nv(x.km)*nv(x.freq)),0);
-    const totalFreq=(r.routes||[]).reduce((s,x)=>s+nv(x.freq),0);
-    const rutasHtml=r.routes?.length?r.routes.map(x=>`
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--brd)">
-        <div style="font-size:12px;color:var(--txt);flex:1">${x.name}</div>
-        <div style="display:flex;gap:6px">
-          <span class="chip chip-g">${x.freq} frec.</span>
-          <span class="chip chip-p">${(nv(x.km)*nv(x.freq)).toFixed(0)} km</span>
-        </div>
-      </div>`).join(''):'';
     el.innerHTML=`
       <button class="back-btn" onclick="histDet=null;RH()">← Volver</button>
       <div class="detail-title">${fd(r.date)}</div>
-      <div class="detail-sub">Bus #${r.busNumber||'?'} · ${totalFreq} frecuencias · ${totalKm.toFixed(0)} km</div>
+      <div class="detail-sub">Bus #${r.busNumber||'?'} · ${r.totalVueltas||0} vueltas · ${(r.totalKm||0).toFixed(0)} km</div>
       <div class="kgrid">
         <div class="kc g"><div class="kl">Ingresos</div><div class="kv">${fm(r.income)}</div></div>
         <div class="kc r"><div class="kl">Gastos</div><div class="kv">${fm(r.totalExpense)}</div></div>
-        <div class="kc b"><div class="kl">Ahorro</div><div class="kv">${fm(r.saving)}</div></div>
+        <div class="kc b"><div class="kl">Frecuencia</div><div class="kv">${fm(r.totalFrecuencia||0)}</div></div>
         <div class="kc y"><div class="kl">Neto</div><div class="kv ${r.net>=0?'c-pos':'c-neg'}">${fm(r.net)}</div></div>
       </div>
-      ${r.routes?.length?`<div class="sh"><div class="st">Rutas</div><div class="sl"></div></div><div class="fs">${rutasHtml}</div>`:''}
-      <div class="fs">
-        <table style="width:100%">
-          ${[['Diésel',r.diesel],['Conductor',r.conductor],['Ayudante',r.ayudante],['Peajes',r.peaje],['Cuota empresa',r.cuota],['Gastos varios',r.varios]].map(([l,v])=>`<tr><td style="color:var(--mut);padding:5px 0;font-size:12px">${l}</td><td style="text-align:right;font-family:var(--fm);font-size:12px">${fm(v)}</td></tr>`).join('')}
-          ${r.variosNote?`<tr><td colspan="2" style="color:var(--mut);font-size:10px;padding:2px 0">↳ ${r.variosNote}</td></tr>`:''}
-        </table>
-      </div>
-      ${(r.photoRecibo||r.photoAporte)?`<div class="sh"><div class="st">Comprobantes</div><div class="sl"></div></div><div class="photo-grid">${r.photoRecibo?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px;text-transform:uppercase">Recibo salida</div><img src="${r.photoRecibo}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}${r.photoAporte?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px;text-transform:uppercase">Aporte empresa</div><img src="${r.photoAporte}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}</div>`:''}
-      <div class="export-row" style="margin-top:12px">
+      ${(r.vueltas||[]).map((v,i)=>{
+        const c=calcVuelta(v);
+        return `<div class="sh"><div class="st">Vuelta ${v.num}</div><div class="sl"></div><span style="font-size:10px;color:var(--mut)">${v.route}</span></div>
+        <div class="fs" style="margin-bottom:10px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;margin-bottom:10px">
+            <div><div style="font-family:var(--fm);font-size:14px;color:var(--grn)">${fm(nv(v.income))}</div><div style="font-size:8px;color:var(--mut)">INGRESO</div></div>
+            <div><div style="font-family:var(--fm);font-size:14px;color:var(--red)">${fm(c.totalGasto)}</div><div style="font-size:8px;color:var(--mut)">GASTO</div></div>
+            <div><div style="font-family:var(--fm);font-size:14px;color:${c.net>=0?'var(--grn)':'var(--red)'}">${fm(c.net)}</div><div style="font-size:8px;color:var(--mut)">NETO</div></div>
+          </div>
+          <table style="width:100%">
+            ${Object.entries(v.gastos||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<tr><td style="color:var(--mut);padding:4px 0;font-size:11px">${gastoLabel(k)}</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(x)}</td></tr>`).join('')}
+            ${(v.colaboradores||[]).filter(co=>nv(co.monto)>0).map(co=>`<tr><td style="color:var(--mut);padding:4px 0;font-size:11px">👥 ${co.nombre||'Colaborador'}</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(co.monto)}</td></tr>`).join('')}
+            ${nv(v.aportesDiario)>0?`<tr><td style="color:var(--mut);padding:4px 0;font-size:11px">🏢 Aporte Diario</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(v.aportesDiario)}</td></tr>`:''}
+            ${Object.entries(v.frecuencia||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<tr><td style="color:var(--mut);padding:4px 0;font-size:11px">💰 ${frecLabel(k)}</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--blu)">${fm(x)}</td></tr>`).join('')}
+          </table>
+          ${v.notas?`<div style="margin-top:6px;font-size:10px;color:var(--mut)">📝 ${v.notas}</div>`:''}
+        </div>`;
+      }).join('')}
+      ${(r.photoRecibo||r.photoAporte)?`<div class="sh"><div class="st">Comprobantes</div><div class="sl"></div></div>
+      <div class="photo-grid">${r.photoRecibo?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px">Recibo salida</div><img src="${r.photoRecibo}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}${r.photoAporte?`<div><div style="font-size:9px;color:var(--mut);margin-bottom:4px">Aporte empresa</div><img src="${r.photoAporte}" style="width:100%;border-radius:8px;border:1px solid var(--brd)"></div>`:''}</div>`:''}
+      <div class="export-row" style="margin-top:10px">
         <button class="btn-exp" onclick="EX_CSV()">📊 CSV</button>
         <button class="btn-exp pdf" onclick="PDF_day('${r.date}')">📄 PDF este día</button>
       </div>`;
@@ -623,10 +809,10 @@ function RH(){
   }
   if(!records.length){el.innerHTML='<div class="empty"><div class="ei">📂</div><p>Sin registros aún</p></div>';return;}
   el.innerHTML=`<div class="tw"><div class="th"><h3>Todos los registros</h3></div><table>
-    <thead><tr><th>Fecha</th><th>Frec.</th><th>Km</th><th>Ingreso</th><th>Neto</th><th></th></tr></thead>
+    <thead><tr><th>Fecha</th><th>Vueltas</th><th>Km</th><th>Ingreso</th><th>Neto</th><th></th></tr></thead>
     <tbody>${records.map((r,i)=>`<tr onclick="histDet=(DB.records||[])[${i}];RH()" style="cursor:pointer">
       <td>${fd(r.date)}</td>
-      <td style="color:var(--mut)">${r.totalFreq||r.freq||0}</td>
+      <td style="color:var(--mut);text-align:center">${r.totalVueltas||0}</td>
       <td style="color:#a78bfa">${(r.totalKm||0).toFixed(0)}</td>
       <td class="pos">${fm(r.income)}</td>
       <td class="${r.net>=0?'pos':'neg'}">${fm(r.net)}</td>
@@ -634,58 +820,115 @@ function RH(){
     </tr>`).join('')}</tbody></table></div>`;
 }
 
-// ── MONTHLY ───────────────────────────────────────────────────────────────────
+// ── MONTHLY ────────────────────────────────────────────────────────────────────
 function RM(){
   const el=document.getElementById('tab-monthly');
   const ms=ld().slice(0,7), mr=(DB.records||[]).filter(r=>r.date.startsWith(ms));
   const tI=mr.reduce((s,r)=>s+r.income,0);
   const tE=mr.reduce((s,r)=>s+r.totalExpense,0);
-  const tS=mr.reduce((s,r)=>s+r.saving,0);
+  const tF=mr.reduce((s,r)=>s+(r.totalFrecuencia||0),0);
   const tN=tI-tE;
   const tKm=mr.reduce((s,r)=>s+(r.totalKm||0),0);
-  const tFreq=mr.reduce((s,r)=>s+(r.totalFreq||r.freq||0),0);
+  const tV=mr.reduce((s,r)=>s+(r.totalVueltas||0),0);
   const mn=new Date(ms+'-01').toLocaleDateString('es-EC',{month:'long',year:'numeric'}).toUpperCase();
+
+  // Totales por gasto
+  const totByGasto={diesel:0,chofer:0,ayudante:0,peajes:0,comida:0,dormitorio:0,garage:0,limpieza:0,recargas:0,tarjeta:0};
+  let totColab=0, totAporte=0;
+  mr.forEach(r=>(r.vueltas||[]).forEach(v=>{
+    Object.keys(totByGasto).forEach(k=>totByGasto[k]+=nv(v.gastos?.[k]));
+    totColab+=(v.colaboradores||[]).reduce((s,c)=>s+nv(c.monto),0);
+    totAporte+=nv(v.aportesDiario);
+  }));
+
   el.innerHTML=`
-    <div style="font-family:var(--ff);font-size:13px;color:var(--mut);letter-spacing:1px;margin-bottom:14px">${mn}</div>
-    <div class="kgrid" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="kc g"><div class="kl">Ingresos</div><div class="kv">${fm(tI)}</div></div>
-      <div class="kc r"><div class="kl">Gastos</div><div class="kv">${fm(tE)}</div></div>
-      <div class="kc b"><div class="kl">Ahorro</div><div class="kv">${fm(tS)}</div></div>
-    </div>
-    <div class="kgrid">
-      <div class="kc y"><div class="kl">Ganancia neta</div><div class="kv ${tN>=0?'c-pos':'c-neg'}">${fm(tN)}</div></div>
-      <div class="kc p"><div class="kl">Km del mes</div><div class="kv">${tKm.toFixed(0)}</div><div class="ks">${tFreq} frecuencias</div></div>
+    <div style="font-family:var(--ff);font-size:12px;color:var(--mut);letter-spacing:1px;margin-bottom:12px">${mn}</div>
+    <div class="total-bar">
+      <div class="total-bar-title">📊 RESUMEN MENSUAL</div>
+      <div class="total-bar-grid">
+        <div class="tb-item"><div class="tb-val" style="color:var(--grn)">${fm(tI)}</div><div class="tb-lbl">Ingresos</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:var(--red)">${fm(tE)}</div><div class="tb-lbl">Gastos</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:${tN>=0?'var(--acc)':'var(--red)'}">${fm(tN)}</div><div class="tb-lbl">Neto</div></div>
+      </div>
+      <div class="total-bar-grid" style="margin-top:8px">
+        <div class="tb-item"><div class="tb-val" style="color:var(--blu)">${fm(tF)}</div><div class="tb-lbl">Frecuencia</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:#a78bfa">${tKm.toFixed(0)}</div><div class="tb-lbl">Km</div></div>
+        <div class="tb-item"><div class="tb-val" style="color:var(--mut)">${tV}</div><div class="tb-lbl">Vueltas</div></div>
+      </div>
     </div>
     <div class="sh"><div class="st">Días registrados</div><div class="sl"></div></div>
     ${!mr.length?'<div class="empty"><div class="ei">📅</div><p>Sin registros este mes</p></div>':`
-    <div class="mgrid">${mr.map(r=>`<div class="dc">
+    <div class="mgrid">${mr.map(r=>`<div class="dc" onclick="histDet=(DB.records||[]).find(x=>x.date==='${r.date}');ST('history',document.querySelectorAll('.nb')[2])">
       <div class="dn">${r.date.split('-')[2]}</div>
-      <div style="font-size:9px;color:var(--mut);margin-top:2px">${new Date(r.date+'T12:00:00').toLocaleDateString('es-EC',{weekday:'short'}).toUpperCase()}</div>
+      <div style="font-size:8px;color:var(--mut)">${new Date(r.date+'T12:00:00').toLocaleDateString('es-EC',{weekday:'short'}).toUpperCase()}</div>
       <div class="dnet ${r.net>=0?'pos':'neg'}">${fm(r.net)}</div>
-      <div class="df">${r.totalFreq||0} frec · ${(r.totalKm||0).toFixed(0)}km</div>
+      <div class="df">${r.totalVueltas||0}v · ${(r.totalKm||0).toFixed(0)}km</div>
     </div>`).join('')}</div>`}
+    <div class="sh"><div class="st">Gastos del mes</div><div class="sl"></div></div>
+    <div class="fs">
+      <table style="width:100%">
+        ${Object.entries(totByGasto).filter(([k,v])=>v>0).map(([k,v])=>`<tr><td style="color:var(--mut);padding:5px 0;font-size:11px">${gastoLabel(k)}</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(v)}</td></tr>`).join('')}
+        ${totColab>0?`<tr><td style="color:var(--mut);padding:5px 0;font-size:11px">👥 Colaboradores</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(totColab)}</td></tr>`:''}
+        ${totAporte>0?`<tr><td style="color:var(--mut);padding:5px 0;font-size:11px">🏢 Aporte Diario</td><td style="text-align:right;font-family:var(--fm);font-size:11px;color:var(--red)">${fm(totAporte)}</td></tr>`:''}
+      </table>
+    </div>
     <div class="export-row">
       <button class="btn-exp" onclick="EX_CSV()">📊 CSV / Excel</button>
       <button class="btn-exp pdf" onclick="PDF_month()">📄 PDF mensual</button>
     </div>`;
 }
 
-// ── EXPORT CSV ────────────────────────────────────────────────────────────────
+// ── EXPORT CSV DÍA (automático al guardar) ────────────────────────────────────
+function EX_CSV_day(r){
+  let csv='\uFEFF';
+  csv+=`BUSCONTROL PRO — REPORTE DEL DÍA\n`;
+  csv+=`Bus #,${DB.busNumber||'01'}\n`;
+  csv+=`Fecha,${r.date}\n`;
+  csv+=`Generado,${new Date().toLocaleDateString('es-EC')} ${new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit'})}\n\n`;
+  csv+=`RESUMEN DEL DÍA\n`;
+  csv+=`Total Ingresos,${r.income.toFixed(2)}\n`;
+  csv+=`Total Gastos,${r.totalExpense.toFixed(2)}\n`;
+  csv+=`Frecuencia,${(r.totalFrecuencia||0).toFixed(2)}\n`;
+  csv+=`GANANCIA NETA,${r.net.toFixed(2)}\n`;
+  csv+=`Vueltas,${r.totalVueltas}\n\n`;
+  csv+=`DETALLE POR VUELTA\n`;
+  csv+=`Vuelta,Ruta,Ingresos,Diesel,Chofer,Ayudante,Peajes,Comida,Dormitorio,Garage,Limpieza,Recargas,Tarjeta,Colaboradores,Aporte Diario,IESS,Dolarito,Cobro Cuentas,Repartibles,Total Gastos,Neto\n`;
+  (r.vueltas||[]).forEach(v=>{
+    const c=calcVuelta(v);
+    const gColab=(v.colaboradores||[]).reduce((s,co)=>s+nv(co.monto),0);
+    const ruta=v.route==='Otra (personalizada)'?v.routeCustom||'Personalizada':v.route;
+    csv+=`${v.num},"${ruta}",${nv(v.income).toFixed(2)},${nv(v.gastos?.diesel).toFixed(2)},${nv(v.gastos?.chofer).toFixed(2)},${nv(v.gastos?.ayudante).toFixed(2)},${nv(v.gastos?.peajes).toFixed(2)},${nv(v.gastos?.comida).toFixed(2)},${nv(v.gastos?.dormitorio).toFixed(2)},${nv(v.gastos?.garage).toFixed(2)},${nv(v.gastos?.limpieza).toFixed(2)},${nv(v.gastos?.recargas).toFixed(2)},${nv(v.gastos?.tarjeta).toFixed(2)},${gColab.toFixed(2)},${nv(v.aportesDiario).toFixed(2)},${nv(v.frecuencia?.iess).toFixed(2)},${nv(v.frecuencia?.dolarito).toFixed(2)},${nv(v.frecuencia?.cuentas).toFixed(2)},${nv(v.frecuencia?.repartible).toFixed(2)},${c.totalGasto.toFixed(2)},${c.net.toFixed(2)}\n`;
+    if((v.colaboradores||[]).filter(co=>nv(co.monto)>0).length){
+      csv+=`,,Detalle colaboradores:\n`;
+      v.colaboradores.filter(co=>nv(co.monto)>0).forEach(co=>csv+=`,,${co.nombre||'Sin nombre'},${nv(co.monto).toFixed(2)}\n`);
+    }
+    if(v.notas) csv+=`,,Notas:,"${v.notas}"\n`;
+  });
+  const b=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);
+  a.download=`BusControl_Bus${DB.busNumber||'01'}_${r.date}.csv`;
+  a.click();
+}
+
+// ── EXPORT CSV MENSUAL ─────────────────────────────────────────────────────────
 function EX_CSV(){
   const records=DB.records||[];
   if(!records.length){showToast('⚠️ Sin datos',true);return;}
-  const ms=ld().slice(0,7),mr=records.filter(r=>r.date.startsWith(ms));
-  const tI=mr.reduce((s,r)=>s+r.income,0),tE=mr.reduce((s,r)=>s+r.totalExpense,0),tS=mr.reduce((s,r)=>s+r.saving,0),tN=tI-tE;
+  const ms=ld().slice(0,7);
   let csv='\uFEFF';
-  csv+=`BUSCONTROL PRO — REPORTE\nBus #,${DB.busNumber||'01'}\nGenerado,${new Date().toLocaleDateString('es-EC')}\n\n`;
-  csv+=`RESUMEN DEL MES\nTotal Ingresos,${tI.toFixed(2)}\nTotal Gastos,${tE.toFixed(2)}\nTotal Ahorros,${tS.toFixed(2)}\nGANANCIA NETA,${tN.toFixed(2)}\n\n`;
-  csv+=`DETALLE DIARIO\nFecha,Bus #,Total Frec.,Km Totales,Ingresos ($),Diesel ($),Conductor ($),Ayudante ($),Peajes ($),Cuota ($),Varios ($),TOTAL GASTOS ($),Ahorro ($),NETO ($)\n`;
+  csv+=`BUSCONTROL PRO v5 — REPORTE\nBus #,${DB.busNumber||'01'}\nGenerado,${new Date().toLocaleDateString('es-EC')}\n\n`;
+  csv+=`DETALLE POR VUELTA\nFecha,Bus #,Vuelta #,Ruta,Km,Ingresos,Diesel,Chofer,Ayudante,Peajes,Comida,Dormitorio,Garage,Limpieza,Recargas,Tarjeta,Colaboradores,Aporte Diario,IESS,Dolarito,Cuentas,Repartibles,Total Gastos,Neto\n`;
   records.forEach(r=>{
-    csv+=`${r.date},${r.busNumber||'01'},${r.totalFreq||0},${(r.totalKm||0).toFixed(0)},${r.income.toFixed(2)},${r.diesel.toFixed(2)},${r.conductor.toFixed(2)},${r.ayudante.toFixed(2)},${r.peaje.toFixed(2)},${r.cuota.toFixed(2)},${r.varios.toFixed(2)},${r.totalExpense.toFixed(2)},${r.saving.toFixed(2)},${r.net.toFixed(2)}\n`;
-    if(r.routes?.length){
-      csv+=`,,,Detalle rutas:\n`;
-      r.routes.forEach(rt=>{csv+=`,,${esc(rt.name)},Frec:${rt.freq},Km/vuelta:${rt.km},Total:${(rt.km*rt.freq).toFixed(0)} km\n`;});
-    }
+    (r.vueltas||[]).forEach(v=>{
+      const c=calcVuelta(v);
+      const gColab=(v.colaboradores||[]).reduce((s,co)=>s+nv(co.monto),0);
+      csv+=`${r.date},${r.busNumber||'01'},${v.num},"${v.route==='Otra (personalizada)'?v.routeCustom:v.route}",${nv(v.km)},${nv(v.income)},${nv(v.gastos?.diesel)},${nv(v.gastos?.chofer)},${nv(v.gastos?.ayudante)},${nv(v.gastos?.peajes)},${nv(v.gastos?.comida)},${nv(v.gastos?.dormitorio)},${nv(v.gastos?.garage)},${nv(v.gastos?.limpieza)},${nv(v.gastos?.recargas)},${nv(v.gastos?.tarjeta)},${gColab},${nv(v.aportesDiario)},${nv(v.frecuencia?.iess)},${nv(v.frecuencia?.dolarito)},${nv(v.frecuencia?.cuentas)},${nv(v.frecuencia?.repartible)},${c.totalGasto},${c.net}\n`;
+      if((v.colaboradores||[]).length){
+        csv+=`,,,,,,,,,,,,,,,,,Detalle colaboradores:\n`;
+        v.colaboradores.forEach(co=>csv+=`,,,,,,,,,,,,,,,,,,${co.nombre||''},${nv(co.monto)}\n`);
+      }
+    });
   });
   const b=new Blob([csv],{type:'text/csv;charset=utf-8;'});
   const a=document.createElement('a');a.href=URL.createObjectURL(b);
@@ -693,220 +936,149 @@ function EX_CSV(){
   showToast('📊 CSV exportado');
 }
 
-// ── PDF ────────────────────────────────────────────────────────────────────────
+// ── PDF DÍA ────────────────────────────────────────────────────────────────────
 function PDF_day(dateStr){
   const r=(DB.records||[]).find(x=>x.date===dateStr);
   if(!r){showToast('⚠️ Sin registro para ese día',true);return;}
-  const totalKm=(r.routes||[]).reduce((s,x)=>s+(nv(x.km)*nv(x.freq)),0);
-  const totalFreq=(r.routes||[]).reduce((s,x)=>s+nv(x.freq),0);
+  const tots=calcDay(r.vueltas||[]);
 
-  const rutasRows=(r.routes||[]).map(x=>`
-    <tr>
-      <td>${x.name}</td>
-      <td style="text-align:center">${x.freq}</td>
-      <td style="text-align:center">${x.km} km</td>
-      <td style="text-align:center">${(nv(x.km)*nv(x.freq)).toFixed(0)} km</td>
-    </tr>`).join('');
+  const vueltasHTML=(r.vueltas||[]).map(v=>{
+    const c=calcVuelta(v);
+    const gColab=(v.colaboradores||[]).reduce((s,co)=>s+nv(co.monto),0);
+    return `<div style="margin-bottom:16px;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden">
+      <div style="background:#f9fafb;padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+        <strong style="font-size:13px">Vuelta ${v.num} — ${v.route==='Otra (personalizada)'?v.routeCustom||'Personalizada':v.route}</strong>
+        <span style="font-size:11px;color:#666">${nv(v.km)} km</span>
+      </div>
+      <div style="padding:12px 14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px;text-align:center">
+          <div style="background:#f0fdf4;border-radius:7px;padding:8px"><div style="font-size:15px;font-weight:800;color:#16a34a">$${nv(v.income).toFixed(2)}</div><div style="font-size:9px;color:#666;text-transform:uppercase">Ingreso</div></div>
+          <div style="background:#fef2f2;border-radius:7px;padding:8px"><div style="font-size:15px;font-weight:800;color:#dc2626">$${c.totalGasto.toFixed(2)}</div><div style="font-size:9px;color:#666;text-transform:uppercase">Gastos</div></div>
+          <div style="background:${c.net>=0?'#f0fdf4':'#fef2f2'};border-radius:7px;padding:8px"><div style="font-size:15px;font-weight:800;color:${c.net>=0?'#16a34a':'#dc2626'}">$${c.net.toFixed(2)}</div><div style="font-size:9px;color:#666;text-transform:uppercase">Neto</div></div>
+        </div>
+        <table style="width:100%;font-size:11px;border-collapse:collapse">
+          ${Object.entries(v.gastos||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<tr><td style="padding:3px 0;color:#555">${gastoLabel(k)}</td><td style="text-align:right;color:#dc2626;font-weight:700">$${nv(x).toFixed(2)}</td></tr>`).join('')}
+          ${(v.colaboradores||[]).filter(co=>nv(co.monto)>0).map(co=>`<tr><td style="padding:3px 0;color:#555">👥 ${co.nombre||'Colaborador'}</td><td style="text-align:right;color:#dc2626;font-weight:700">$${nv(co.monto).toFixed(2)}</td></tr>`).join('')}
+          ${nv(v.aportesDiario)>0?`<tr><td style="padding:3px 0;color:#555">🏢 Aporte Diario</td><td style="text-align:right;color:#dc2626;font-weight:700">$${nv(v.aportesDiario).toFixed(2)}</td></tr>`:''}
+          ${Object.entries(v.frecuencia||{}).filter(([k,x])=>nv(x)>0).map(([k,x])=>`<tr><td style="padding:3px 0;color:#555">💰 ${frecLabel(k)}</td><td style="text-align:right;color:#2563eb;font-weight:700">$${nv(x).toFixed(2)}</td></tr>`).join('')}
+        </table>
+        ${v.notas?`<div style="margin-top:6px;font-size:10px;color:#888">📝 ${v.notas}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
 
-  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-  <title>BusControl — ${fd(dateStr)}</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Nunito',sans-serif;background:#fff;color:#1a1a2e;padding:28px;max-width:700px;margin:0 auto;}
-    .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #f0b429;padding-bottom:16px;margin-bottom:20px;}
-    .logo{font-size:24px;font-weight:800;color:#f0b429;}
-    .logo span{color:#1a1a2e;}
-    .meta{text-align:right;font-size:12px;color:#666;}
-    .meta strong{display:block;font-size:16px;color:#1a1a2e;font-weight:700;}
-    .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-    .kpi{border-radius:10px;padding:14px;text-align:center;}
-    .kpi.green{background:#f0fdf4;border:1px solid #86efac;}
-    .kpi.red{background:#fef2f2;border:1px solid #fca5a5;}
-    .kpi.blue{background:#eff6ff;border:1px solid #93c5fd;}
-    .kpi.yellow{background:#fffbeb;border:1px solid #fde68a;}
-    .kpi-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:4px;font-weight:700;}
-    .kpi-val{font-size:20px;font-weight:800;}
-    .kpi.green .kpi-val{color:#16a34a;}
-    .kpi.red .kpi-val{color:#dc2626;}
-    .kpi.blue .kpi-val{color:#2563eb;}
-    .kpi.yellow .kpi-val{color:#d97706;}
-    .section{margin-bottom:18px;}
-    .section h3{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#666;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;}
-    table{width:100%;border-collapse:collapse;font-size:12px;}
-    thead th{background:#f9fafb;padding:8px 10px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#9ca3af;font-weight:700;}
-    tbody td{padding:9px 10px;border-bottom:1px solid #f3f4f6;}
-    .amt{text-align:right;font-weight:700;}
-    .amt.pos{color:#16a34a;}
-    .amt.neg{color:#dc2626;}
-    .total-row td{background:#f9fafb;font-weight:800;border-top:2px solid #e5e7eb;}
-    .km-row{display:flex;gap:16px;background:#f5f3ff;border-radius:8px;padding:12px;margin-bottom:18px;}
-    .km-box{text-align:center;flex:1;}
-    .km-box .val{font-size:22px;font-weight:800;color:#7c3aed;}
-    .km-box .lbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#7c3aed;margin-top:2px;}
-    .footer{margin-top:24px;padding-top:12px;border-top:1px solid #e5e7eb;font-size:10px;color:#9ca3af;text-align:center;}
-    @media print{body{padding:16px;}.no-print{display:none;}}
-  </style>
-  </head><body>
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>BusControl — ${fd(dateStr)}</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Nunito',sans-serif;background:#fff;color:#1a1a2e;padding:24px;max-width:720px;margin:0 auto;}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #f0b429;padding-bottom:14px;margin-bottom:18px;}
+  .logo{font-size:22px;font-weight:800;color:#f0b429;}.logo span{color:#1a1a2e;}
+  .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+  .kpi{border-radius:9px;padding:12px;text-align:center;}
+  .kpi.g{background:#f0fdf4;border:1px solid #86efac;}.kpi.r{background:#fef2f2;border:1px solid #fca5a5;}.kpi.b{background:#eff6ff;border:1px solid #93c5fd;}.kpi.y{background:#fffbeb;border:1px solid #fde68a;}.kpi.p{background:#f5f3ff;border:1px solid #c4b5fd;}
+  .kpi-label{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:3px;font-weight:700;}
+  .kpi.g .kpi-val{color:#16a34a;}.kpi.r .kpi-val{color:#dc2626;}.kpi.b .kpi-val{color:#2563eb;}.kpi.y .kpi-val{color:#d97706;}.kpi.p .kpi-val{color:#7c3aed;}
+  .kpi-val{font-size:18px;font-weight:800;}
+  .footer{margin-top:20px;padding-top:10px;border-top:1px solid #e5e7eb;font-size:10px;color:#9ca3af;text-align:center;}
+  @media print{.no-print{display:none;}body{padding:14px;}}
+  </style></head><body>
   <div class="header">
-    <div><div class="logo">🚌 BUS<span>CONTROL</span> PRO</div><div style="font-size:11px;color:#666;margin-top:4px">Sistema de Gestión de Transporte</div></div>
-    <div class="meta"><strong>${fd(dateStr)}</strong>Bus #${r.busNumber||'01'}<br>${totalFreq} frecuencias · ${totalKm.toFixed(0)} km</div>
+    <div><div class="logo">🚌 BUS<span>CONTROL</span> PRO</div><div style="font-size:11px;color:#666;margin-top:3px">Sistema de Gestión de Transporte</div></div>
+    <div style="text-align:right;font-size:12px;color:#666"><strong style="display:block;font-size:15px;color:#1a1a2e">${fd(dateStr)}</strong>Bus #${r.busNumber||'01'} · ${r.totalVueltas||0} vueltas · ${(r.totalKm||0).toFixed(0)} km</div>
   </div>
-
-  <div class="kpi-row">
-    <div class="kpi green"><div class="kpi-label">Ingresos</div><div class="kpi-val">${fm(r.income)}</div></div>
-    <div class="kpi red"><div class="kpi-label">Gastos</div><div class="kpi-val">${fm(r.totalExpense)}</div></div>
-    <div class="kpi blue"><div class="kpi-label">Ahorro</div><div class="kpi-val">${fm(r.saving)}</div></div>
-    <div class="kpi yellow"><div class="kpi-label">Ganancia neta</div><div class="kpi-val" style="color:${r.net>=0?'#d97706':'#dc2626'}">${fm(r.net)}</div></div>
+  <div class="kpi-row" style="grid-template-columns:repeat(5,1fr)">
+    <div class="kpi g"><div class="kpi-label">Ingresos</div><div class="kpi-val">$${tots.income.toFixed(2)}</div></div>
+    <div class="kpi r"><div class="kpi-label">Gastos</div><div class="kpi-val">$${tots.gasto.toFixed(2)}</div></div>
+    <div class="kpi b"><div class="kpi-label">Frecuencia</div><div class="kpi-val">$${tots.frecuencia.toFixed(2)}</div></div>
+    <div class="kpi y"><div class="kpi-label">Neto</div><div class="kpi-val" style="color:${tots.net>=0?'#d97706':'#dc2626'}">$${tots.net.toFixed(2)}</div></div>
+    <div class="kpi p"><div class="kpi-label">Km totales</div><div class="kpi-val">${tots.km.toFixed(0)}</div></div>
   </div>
-
-  <div class="km-row">
-    <div class="km-box"><div class="val">${totalKm.toFixed(0)}</div><div class="lbl">Km totales</div></div>
-    <div class="km-box"><div class="val">${totalFreq}</div><div class="lbl">Frecuencias</div></div>
-    <div class="km-box"><div class="val">${totalFreq>0?(r.income/totalFreq).toFixed(2):'0.00'}</div><div class="lbl">$ / frecuencia</div></div>
-    <div class="km-box"><div class="val">${totalKm>0?(r.income/totalKm).toFixed(2):'0.00'}</div><div class="lbl">$ / km</div></div>
-  </div>
-
-  ${r.routes?.length?`<div class="section"><h3>🗺️ Rutas del día</h3><table>
-    <thead><tr><th>Ruta</th><th style="text-align:center">Frecuencias</th><th style="text-align:center">Km/vuelta</th><th style="text-align:center">Km total</th></tr></thead>
-    <tbody>${rutasRows}</tbody>
-  </table></div>`:''}
-
-  <div class="section"><h3>💰 Detalle de gastos</h3><table>
-    <thead><tr><th>Concepto</th><th class="amt">Monto</th></tr></thead>
-    <tbody>
-      ${r.diesel>0?`<tr><td>🛢️ Diésel</td><td class="amt neg">${fm(r.diesel)}</td></tr>`:''}
-      ${r.conductor>0?`<tr><td>👤 Conductor</td><td class="amt neg">${fm(r.conductor)}</td></tr>`:''}
-      ${r.ayudante>0?`<tr><td>👥 Ayudante</td><td class="amt neg">${fm(r.ayudante)}</td></tr>`:''}
-      ${r.peaje>0?`<tr><td>🛣️ Peajes</td><td class="amt neg">${fm(r.peaje)}</td></tr>`:''}
-      ${r.cuota>0?`<tr><td>🏢 Cuota empresa</td><td class="amt neg">${fm(r.cuota)}</td></tr>`:''}
-      ${r.varios>0?`<tr><td>🍽️ Gastos varios${r.variosNote?' ('+r.variosNote+')':''}</td><td class="amt neg">${fm(r.varios)}</td></tr>`:''}
-      <tr class="total-row"><td>TOTAL GASTOS</td><td class="amt neg">${fm(r.totalExpense)}</td></tr>
-      <tr class="total-row"><td>INGRESOS</td><td class="amt pos">${fm(r.income)}</td></tr>
-      <tr class="total-row"><td>GANANCIA NETA</td><td class="amt ${r.net>=0?'pos':'neg'}">${fm(r.net)}</td></tr>
-    </tbody>
-  </table></div>
-
-  <div class="footer">BusControl Pro · Bus #${r.busNumber||'01'} · Generado ${new Date().toLocaleDateString('es-EC')} ${new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit'})}</div>
-  <div class="no-print" style="margin-top:20px;text-align:center">
-    <button onclick="window.print()" style="background:#f0b429;border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer">🖨️ Imprimir / Guardar PDF</button>
-  </div>
+  <h3 style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#666;margin-bottom:12px;padding-bottom:4px;border-bottom:1px solid #e5e7eb">Detalle por vuelta</h3>
+  ${vueltasHTML}
+  <div class="footer">BusControl Pro · Bus #${r.busNumber||'01'} · ${new Date().toLocaleDateString('es-EC')} ${new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit'})}</div>
+  <div class="no-print" style="margin-top:18px;text-align:center"><button onclick="window.print()" style="background:#f0b429;border:none;border-radius:8px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer">🖨️ Imprimir / Guardar PDF</button></div>
   </body></html>`;
 
   const w=window.open('','_blank');w.document.write(html);w.document.close();
 }
 
+// ── PDF MENSUAL ─────────────────────────────────────────────────────────────────
 function PDF_month(){
   const ms=ld().slice(0,7);
   const records=(DB.records||[]).filter(r=>r.date.startsWith(ms));
   if(!records.length){showToast('⚠️ Sin datos este mes',true);return;}
   const tI=records.reduce((s,r)=>s+r.income,0);
   const tE=records.reduce((s,r)=>s+r.totalExpense,0);
-  const tS=records.reduce((s,r)=>s+r.saving,0);
   const tN=tI-tE;
   const tKm=records.reduce((s,r)=>s+(r.totalKm||0),0);
-  const tFreq=records.reduce((s,r)=>s+(r.totalFreq||0),0);
+  const tV=records.reduce((s,r)=>s+(r.totalVueltas||0),0);
   const mn=new Date(ms+'-01').toLocaleDateString('es-EC',{month:'long',year:'numeric'});
 
-  // Resumen por ruta
-  const byR={};
-  records.forEach(r=>{(r.routes||[]).forEach(rt=>{const k=rt.name;if(!byR[k])byR[k]={frec:0,km:0};byR[k].frec+=rt.freq;byR[k].km+=nv(rt.km)*nv(rt.freq);});});
+  const totByGasto={diesel:0,chofer:0,ayudante:0,peajes:0,comida:0,dormitorio:0,garage:0,limpieza:0,recargas:0,tarjeta:0};
+  let totColab=0,totAporte=0,totIESS=0,totDol=0,totCuentas=0,totRep=0;
+  records.forEach(r=>(r.vueltas||[]).forEach(v=>{
+    Object.keys(totByGasto).forEach(k=>totByGasto[k]+=nv(v.gastos?.[k]));
+    totColab+=(v.colaboradores||[]).reduce((s,c)=>s+nv(c.monto),0);
+    totAporte+=nv(v.aportesDiario);
+    totIESS+=nv(v.frecuencia?.iess);
+    totDol+=nv(v.frecuencia?.dolarito);
+    totCuentas+=nv(v.frecuencia?.cuentas);
+    totRep+=nv(v.frecuencia?.repartible);
+  }));
 
-  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-  <title>BusControl — Reporte ${mn}</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Nunito',sans-serif;background:#fff;color:#1a1a2e;padding:28px;max-width:750px;margin:0 auto;}
-    .header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #f0b429;padding-bottom:16px;margin-bottom:20px;}
-    .logo{font-size:24px;font-weight:800;color:#f0b429;}
-    .logo span{color:#1a1a2e;}
-    .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
-    .kpi{border-radius:10px;padding:12px;text-align:center;}
-    .kpi.green{background:#f0fdf4;border:1px solid #86efac;}
-    .kpi.red{background:#fef2f2;border:1px solid #fca5a5;}
-    .kpi.blue{background:#eff6ff;border:1px solid #93c5fd;}
-    .kpi.yellow{background:#fffbeb;border:1px solid #fde68a;}
-    .kpi.purple{background:#f5f3ff;border:1px solid #c4b5fd;}
-    .kpi-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:4px;font-weight:700;}
-    .kpi-val{font-size:18px;font-weight:800;}
-    .kpi.green .kpi-val{color:#16a34a;}
-    .kpi.red .kpi-val{color:#dc2626;}
-    .kpi.blue .kpi-val{color:#2563eb;}
-    .kpi.yellow .kpi-val{color:#d97706;}
-    .kpi.purple .kpi-val{color:#7c3aed;}
-    .section{margin-bottom:18px;}
-    .section h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#666;margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;}
-    table{width:100%;border-collapse:collapse;font-size:11px;}
-    thead th{background:#f9fafb;padding:7px 9px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#9ca3af;font-weight:700;}
-    tbody td{padding:8px 9px;border-bottom:1px solid #f3f4f6;}
-    .amt{text-align:right;font-weight:700;}
-    .pos{color:#16a34a;}
-    .neg{color:#dc2626;}
-    .total-row td{background:#f9fafb;font-weight:800;border-top:2px solid #e5e7eb;}
-    .footer{margin-top:24px;padding-top:12px;border-top:1px solid #e5e7eb;font-size:10px;color:#9ca3af;text-align:center;}
-    @media print{body{padding:16px;}.no-print{display:none;}}
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>BusControl — ${mn}</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Nunito',sans-serif;background:#fff;color:#1a1a2e;padding:24px;max-width:750px;margin:0 auto;}
+  .header{display:flex;justify-content:space-between;border-bottom:3px solid #f0b429;padding-bottom:14px;margin-bottom:18px;}
+  .logo{font-size:22px;font-weight:800;color:#f0b429;}.logo span{color:#1a1a2e;}
+  table{width:100%;border-collapse:collapse;font-size:11px;}
+  thead th{background:#f9fafb;padding:7px 9px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#9ca3af;font-weight:700;}
+  tbody td{padding:7px 9px;border-bottom:1px solid #f3f4f6;}
+  .amt{text-align:right;font-weight:700;}.pos{color:#16a34a;}.neg{color:#dc2626;}
+  .total-row td{background:#f9fafb;font-weight:800;border-top:2px solid #e5e7eb;}
+  .section{margin-bottom:16px;}.section h3{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#666;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;}
+  .footer{margin-top:20px;padding-top:10px;border-top:1px solid #e5e7eb;font-size:10px;color:#9ca3af;text-align:center;}
+  @media print{.no-print{display:none;}body{padding:14px;}}
   </style></head><body>
   <div class="header">
-    <div><div class="logo">🚌 BUS<span>CONTROL</span> PRO</div><div style="font-size:11px;color:#666;margin-top:4px">Reporte Mensual</div></div>
-    <div style="text-align:right;font-size:12px;color:#666"><strong style="display:block;font-size:16px;color:#1a1a2e;font-weight:700;text-transform:capitalize">${mn}</strong>Bus #${DB.busNumber||'01'} · ${records.length} días</div>
+    <div><div class="logo">🚌 BUS<span>CONTROL</span> PRO</div><div style="font-size:11px;color:#666;margin-top:3px">Reporte Mensual</div></div>
+    <div style="text-align:right;font-size:12px;color:#666"><strong style="display:block;font-size:15px;color:#1a1a2e;text-transform:capitalize">${mn}</strong>Bus #${DB.busNumber||'01'} · ${records.length} días · ${tV} vueltas</div>
   </div>
-
-  <div class="kpi-row" style="grid-template-columns:repeat(5,1fr)">
-    <div class="kpi green"><div class="kpi-label">Ingresos</div><div class="kpi-val">${fm(tI)}</div></div>
-    <div class="kpi red"><div class="kpi-label">Gastos</div><div class="kpi-val">${fm(tE)}</div></div>
-    <div class="kpi blue"><div class="kpi-label">Ahorro</div><div class="kpi-val">${fm(tS)}</div></div>
-    <div class="kpi yellow"><div class="kpi-label">Ganancia neta</div><div class="kpi-val" style="color:${tN>=0?'#d97706':'#dc2626'}">${fm(tN)}</div></div>
-    <div class="kpi purple"><div class="kpi-label">Km totales</div><div class="kpi-val">${tKm.toFixed(0)}</div></div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:16px">
+    ${[['Ingresos','$'+tI.toFixed(2),'#f0fdf4','#86efac','#16a34a'],['Gastos','$'+tE.toFixed(2),'#fef2f2','#fca5a5','#dc2626'],['Neto','$'+tN.toFixed(2),tN>=0?'#f0fdf4':'#fef2f2',tN>=0?'#86efac':'#fca5a5',tN>=0?'#16a34a':'#dc2626'],['Km',tKm.toFixed(0),'#f5f3ff','#c4b5fd','#7c3aed'],['Vueltas',tV,'#fffbeb','#fde68a','#d97706']].map(([l,v,bg,br,c])=>`<div style="background:${bg};border:1px solid ${br};border-radius:8px;padding:10px;text-align:center"><div style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:3px;font-weight:700">${l}</div><div style="font-size:16px;font-weight:800;color:${c}">${v}</div></div>`).join('')}
   </div>
-
   <div class="section"><h3>📅 Detalle diario</h3><table>
-    <thead><tr><th>Fecha</th><th>Frec.</th><th>Km</th><th class="amt">Ingresos</th><th class="amt">Gastos</th><th class="amt">Neto</th></tr></thead>
+    <thead><tr><th>Fecha</th><th style="text-align:center">Vueltas</th><th style="text-align:center">Km</th><th class="amt">Ingresos</th><th class="amt">Gastos</th><th class="amt">Neto</th></tr></thead>
     <tbody>
-      ${records.map(r=>`<tr>
-        <td>${fd(r.date)}</td>
-        <td style="text-align:center">${r.totalFreq||0}</td>
-        <td style="text-align:center;color:#7c3aed">${(r.totalKm||0).toFixed(0)}</td>
-        <td class="amt pos">${fm(r.income)}</td>
-        <td class="amt neg">${fm(r.totalExpense)}</td>
-        <td class="amt ${r.net>=0?'pos':'neg'}">${fm(r.net)}</td>
-      </tr>`).join('')}
-      <tr class="total-row">
-        <td>TOTAL MES</td>
-        <td style="text-align:center">${tFreq}</td>
-        <td style="text-align:center;color:#7c3aed">${tKm.toFixed(0)}</td>
-        <td class="amt pos">${fm(tI)}</td>
-        <td class="amt neg">${fm(tE)}</td>
-        <td class="amt ${tN>=0?'pos':'neg'}">${fm(tN)}</td>
-      </tr>
+      ${records.map(r=>`<tr><td>${fd(r.date)}</td><td style="text-align:center">${r.totalVueltas||0}</td><td style="text-align:center;color:#7c3aed">${(r.totalKm||0).toFixed(0)}</td><td class="amt pos">$${r.income.toFixed(2)}</td><td class="amt neg">$${r.totalExpense.toFixed(2)}</td><td class="amt ${r.net>=0?'pos':'neg'}">$${r.net.toFixed(2)}</td></tr>`).join('')}
+      <tr class="total-row"><td>TOTAL</td><td style="text-align:center">${tV}</td><td style="text-align:center;color:#7c3aed">${tKm.toFixed(0)}</td><td class="amt pos">$${tI.toFixed(2)}</td><td class="amt neg">$${tE.toFixed(2)}</td><td class="amt ${tN>=0?'pos':'neg'}">$${tN.toFixed(2)}</td></tr>
     </tbody>
   </table></div>
-
-  ${Object.keys(byR).length?`<div class="section"><h3>🗺️ Resumen por ruta</h3><table>
-    <thead><tr><th>Ruta</th><th style="text-align:center">Frecuencias</th><th style="text-align:center">Km totales</th></tr></thead>
-    <tbody>${Object.entries(byR).map(([k,v])=>`<tr><td>${k}</td><td style="text-align:center">${v.frec}</td><td style="text-align:center;color:#7c3aed">${v.km.toFixed(0)}</td></tr>`).join('')}</tbody>
-  </table></div>`:''}
-
-  <div class="section"><h3>💰 Totales por concepto</h3><table>
-    <thead><tr><th>Concepto</th><th class="amt">Total del mes</th><th class="amt">Promedio/día</th></tr></thead>
+  <div class="section"><h3>💰 Gastos del mes por concepto</h3><table>
+    <thead><tr><th>Concepto</th><th class="amt">Total mes</th><th class="amt">Prom/día</th></tr></thead>
     <tbody>
-      ${[['🛢️ Diésel','diesel'],['👤 Conductor','conductor'],['👥 Ayudante','ayudante'],['🛣️ Peajes','peaje'],['🏢 Cuota empresa','cuota'],['🍽️ Gastos varios','varios']].map(([l,k])=>{
-        const tot=records.reduce((s,r)=>s+(r[k]||0),0);
-        return tot>0?`<tr><td>${l}</td><td class="amt neg">${fm(tot)}</td><td class="amt" style="color:#666">${fm(tot/records.length)}</td></tr>`:'';
-      }).join('')}
+      ${Object.entries(totByGasto).filter(([k,v])=>v>0).map(([k,v])=>`<tr><td>${gastoLabel(k)}</td><td class="amt neg">$${v.toFixed(2)}</td><td class="amt" style="color:#666">$${(v/records.length).toFixed(2)}</td></tr>`).join('')}
+      ${totColab>0?`<tr><td>👥 Colaboradores</td><td class="amt neg">$${totColab.toFixed(2)}</td><td class="amt" style="color:#666">$${(totColab/records.length).toFixed(2)}</td></tr>`:''}
+      ${totAporte>0?`<tr><td>🏢 Aporte Diario</td><td class="amt neg">$${totAporte.toFixed(2)}</td><td class="amt" style="color:#666">$${(totAporte/records.length).toFixed(2)}</td></tr>`:''}
     </tbody>
   </table></div>
-
-  <div class="footer">BusControl Pro · Bus #${DB.busNumber||'01'} · Generado ${new Date().toLocaleDateString('es-EC')} ${new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit'})}</div>
-  <div class="no-print" style="margin-top:20px;text-align:center">
-    <button onclick="window.print()" style="background:#f0b429;border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer">🖨️ Imprimir / Guardar PDF</button>
-  </div>
+  <div class="section"><h3>📋 Frecuencia del mes</h3><table>
+    <thead><tr><th>Concepto</th><th class="amt">Total</th></tr></thead>
+    <tbody>
+      ${totIESS>0?`<tr><td>🏥 Ahorro Socios IESS</td><td class="amt" style="color:#2563eb">$${totIESS.toFixed(2)}</td></tr>`:''}
+      ${totDol>0?`<tr><td>⚡ Dolarito / Defensa Frecuencia</td><td class="amt" style="color:#2563eb">$${totDol.toFixed(2)}</td></tr>`:''}
+      ${totCuentas>0?`<tr><td>📋 Ahorro Cobro Cuentas</td><td class="amt" style="color:#2563eb">$${totCuentas.toFixed(2)}</td></tr>`:''}
+      ${totRep>0?`<tr><td>💼 Socios B2-B4 / Repartibles</td><td class="amt" style="color:#2563eb">$${totRep.toFixed(2)}</td></tr>`:''}
+      <tr class="total-row"><td>TOTAL FRECUENCIA</td><td class="amt" style="color:#2563eb">$${(totIESS+totDol+totCuentas+totRep).toFixed(2)}</td></tr>
+    </tbody>
+  </table></div>
+  <div class="footer">BusControl Pro · Bus #${DB.busNumber||'01'} · ${new Date().toLocaleDateString('es-EC')} ${new Date().toLocaleTimeString('es-EC',{hour:'2-digit',minute:'2-digit'})}</div>
+  <div class="no-print" style="margin-top:18px;text-align:center"><button onclick="window.print()" style="background:#f0b429;border:none;border-radius:8px;padding:10px 22px;font-size:13px;font-weight:700;cursor:pointer">🖨️ Imprimir / Guardar PDF</button></div>
   </body></html>`;
 
   const w=window.open('','_blank');w.document.write(html);w.document.close();
 }
 
-// ── SETTINGS ──────────────────────────────────────────────────────────────────
+// ── SETTINGS ───────────────────────────────────────────────────────────────────
 function RS(){
   const el=document.getElementById('tab-settings');
   el.innerHTML=`
@@ -922,30 +1094,15 @@ function RS(){
     <div class="sc"><h3>⚠️ Zona peligrosa</h3>
       <button class="btn-ss btn-danger" onclick="CA()">🗑️ Borrar todos los registros</button>
     </div>
-    <div style="text-align:center;color:var(--mut);font-size:10px;margin-top:16px">BusControl Pro v4.0 · Bus #${DB.busNumber||'?'}</div>`;
+    <div style="text-align:center;color:var(--mut);font-size:10px;margin-top:14px">BusControl Pro v5.0 · Bus #${DB.busNumber||'?'}</div>`;
 }
-function SB(){
-  DB.busNumber=document.getElementById('s-bus').value||DB.busNumber||'01';sv();
-  document.getElementById('h-bus-num').textContent='BUS #'+DB.busNumber;
-  showToast('✅ Bus actualizado');
-}
-function SP(){
-  const p1=document.getElementById('s-p1').value,p2=document.getElementById('s-p2').value;
-  if(!/^\d{4}$/.test(p1)){showToast('⚠️ PIN debe ser 4 dígitos',true);return;}
-  if(p1!==p2){showToast('⚠️ Los PINs no coinciden',true);return;}
-  DB.pin=p1;sv();document.getElementById('s-p1').value='';document.getElementById('s-p2').value='';showToast('🔒 PIN actualizado');
-}
+function SB(){DB.busNumber=document.getElementById('s-bus').value||DB.busNumber||'01';sv();document.getElementById('h-bus-num').textContent='BUS #'+DB.busNumber;showToast('✅ Bus actualizado');}
+function SP(){const p1=document.getElementById('s-p1').value,p2=document.getElementById('s-p2').value;if(!/^\d{4}$/.test(p1)){showToast('⚠️ PIN debe ser 4 dígitos',true);return;}if(p1!==p2){showToast('⚠️ PINs no coinciden',true);return;}DB.pin=p1;sv();document.getElementById('s-p1').value='';document.getElementById('s-p2').value='';showToast('🔒 PIN actualizado');}
 function CA(){if(confirm('¿Borrar TODOS los registros?')){DB.records=[];sv();showToast('🗑️ Borrado');}}
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
 let toastT;
-function showToast(msg,warn=false){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.className='show'+(warn?' warn':'');
-  clearTimeout(toastT);toastT=setTimeout(()=>t.className='',2800);
-}
+function showToast(msg,warn=false){const t=document.getElementById('toast');t.textContent=msg;t.className='show'+(warn?' warn':'');clearTimeout(toastT);toastT=setTimeout(()=>t.className='',2800);}
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded',()=>{
   if(DB.busNumber)document.getElementById('l-bus').value=DB.busNumber;
   if(DB.pin)document.getElementById('pin-hint').style.display='none';
